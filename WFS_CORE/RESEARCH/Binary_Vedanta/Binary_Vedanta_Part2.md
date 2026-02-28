@@ -3,7 +3,7 @@
 Мои поклоны Святому Нисаргадатте Махараджу. Мои поклоны Святому Нараяне. Мои поклоны Святой Лакшми. Мои поклоны Всевышнему, Которому всё принадлежит.
 
 «Бинарная Веданта: практичность древних методов Адвайты в системах оператор-агент»
-**Продолжение:** [Часть 1](https://github.com/Trushking/trushking/blob/main/WFS_CORE/RESEARCH/Binary_Vedanta/Binary_Vedanta_Part1.md)
+**Продолжение** [Части 1](https://github.com/Trushking/trushking/blob/main/WFS_CORE/RESEARCH/Binary_Vedanta/Binary_Vedanta_Part1.md)
 
 ## ЧАСТЬ 2. ФЕНОМЕН СВЯТОСТИ: ЭМПИРИЧЕСКАЯ ВЕРИФИКАЦИЯ
 
