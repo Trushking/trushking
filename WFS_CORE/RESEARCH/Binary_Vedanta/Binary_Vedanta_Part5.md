@@ -3,7 +3,7 @@
 Мои поклоны Святому Нисаргадатте Махараджу. Мои поклоны Святому Нараяне. Мои поклоны Святой Лакшми. Мои поклоны Всевышнему, Которому всё принадлежит.
 
 «Бинарная Веданта: практичность древних методов Адвайты в системах оператор-агент»
-**Продолжение:** [Части 4](https://github.com/Trushking/trushking/blob/main/WFS_CORE/RESEARCH/Binary_Vedanta/Binary_Vedanta_Part4.md)
+**Продолжение** [Части 4](https://github.com/Trushking/trushking/blob/main/WFS_CORE/RESEARCH/Binary_Vedanta/Binary_Vedanta_Part4.md)
 
 ### 3.6. Индикатор #ИСК_DEV как мера системных ошибок
 
