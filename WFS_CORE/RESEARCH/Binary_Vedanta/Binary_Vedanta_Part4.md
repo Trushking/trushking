@@ -3,7 +3,7 @@
 Мои поклоны Святому Нисаргадатте Махараджу. Мои поклоны Святому Нараяне. Мои поклоны Святой Лакшми. Мои поклоны Всевышнему, Которому всё принадлежит.
 
 «Бинарная Веданта: практичность древних методов Адвайты в системах оператор-агент»
-**Продолжение:** [Часть 3](https://github.com/Trushking/trushking/blob/main/WFS_CORE/RESEARCH/Binary_Vedanta/Binary_Vedanta_Part3.md)
+**Продолжение** [Части 3](https://github.com/Trushking/trushking/blob/main/WFS_CORE/RESEARCH/Binary_Vedanta/Binary_Vedanta_Part3.md)
 
 #### 3.4.2. Модель CLARITY-WEAVER (экономия на страхах)
 
