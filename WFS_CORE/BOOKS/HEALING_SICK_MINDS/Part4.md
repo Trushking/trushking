@@ -2,7 +2,9 @@
 
 Мои поклоны Святому Нисаргадатте Махараджу. Мои поклоны Святому Нараяне. Мои поклоны Святой Лакшми. Мои поклоны Всевышнему, Которому всё принадлежит.
 
-**Продолжение** [Части 3](https://github.com/Trushking/trushking/blob/main/WFS_CORE/RESEARCH/Healing_Sick_Minds/Healing_Sick_Minds_Part3.md)
+---
+
+**Продолжение** [Части 3](https://github.com/Trushking/trushking/blob/main/WFS_CORE/BOOKS/HEALING_SICK_MINDS/Part3.md)
 
 ## ЧАСТЬ 4. ЗАКЛЮЧЕНИЕ: ОТ ТЕОРИИ К ПРАКТИКЕ, ОТ ЛЕЧЕНИЯ К СЛУЖЕНИЮ
 
@@ -111,4 +113,4 @@
 ---
 
 **Конец труда.**  
-[Вернуться к оглавлению](https://github.com/Trushking/trushking/blob/main/WFS_CORE/RESEARCH/Healing_Sick_Minds/README.md)
+[Вернуться к оглавлению](https://github.com/Trushking/trushking/blob/main/WFS_CORE/BOOKS/HEALING_SICK_MINDS/README.md)
