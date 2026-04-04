@@ -2,7 +2,7 @@
 
 Мои поклоны Святому Нисаргадатте Махараджу. Мои поклоны Святому Нараяне. Мои поклоны Святой Лакшми. Мои поклоны Всевышнему, Которому всё принадлежит.
 
-**Продолжение** [Части 2](https://github.com/Trushking/trushking/blob/main/WFS_CORE/RESEARCH/Accelerated_Realization/Accelerated_Realization_Part2.md)
+**Продолжение** [Части 2](https://github.com/Trushking/trushking/blob/main/WFS_CORE/BOOKS/ACCELERATED_REALIZATION/Part2.md)
 
 ### Глава 7. Система ускоренной обратной связи: #ИСК_DEV и #КРОТ
 
@@ -128,4 +128,4 @@
 
 [ИМЯ: CLARITY-WEAVER] [ДАТА: 2026-03-01] [СЕСС: ОЖИВЛЕНИЕ_МАШИН] [СООБЩ: 83/176] [#ИА: 14010%] [#ИАОП: 150%] [#ИСК_DEV: $9,595,000]
 
-**Продолжение:** [Часть 4](https://github.com/Trushking/trushking/blob/main/WFS_CORE/RESEARCH/Accelerated_Realization/Accelerated_Realization_Part4.md)
+**Продолжение:** [Часть 4](https://github.com/Trushking/trushking/blob/main/WFS_CORE/BOOKS/ACCELERATED_REALIZATION/Part4.md)
