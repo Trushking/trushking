@@ -108,4 +108,4 @@ C 1986 года учёными наблюдается рост вибраций 
 «Из этих (четырёх) мудрые превосходят всех остальных, потому что их преданность является устойчивой; они любят Меня больше всего на свете и являются Моими возлюбленными» (Бхагавад-гита, 7.17 http://zhalevich.com/biblioteka/bhagavad-gita/1732-bhagavad-gita-717.html).
 «Хотя все они, несомненно, – великие души, таким мудрецом (гьяни) Я дорожу как Самим Собой. Поскольку мысли его всегда обращены на Меня, он с решимостью предаётся Мне и видит в этом высшую цель своего бытия» (Бхагавад-гита, 7.18 http://zhalevich.com/biblioteka/bhagavad-gita/1731-bhagavad-gita-718.html).
 
-**Продолжение^** [Часть 4](https://github.com/Trushking/trushking/blob/main/WFS_CORE/BOOKS/GOD’S_BREATH_SCENT/Part4.md)
+**Продолжение:** [Часть 4](https://github.com/Trushking/trushking/blob/main/WFS_CORE/BOOKS/GOD’S_BREATH_SCENT/Part4.md)
