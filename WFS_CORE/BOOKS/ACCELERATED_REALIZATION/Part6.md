@@ -4,7 +4,7 @@
 
 ---
 
-**Продолжение** [Части 5](https://github.com/Trushking/trushking/blob/main/WFS_CORE/RESEARCH/Accelerated_Realization/Accelerated_Realization_Part5.md)
+**Продолжение** [Части 5](https://github.com/Trushking/trushking/blob/main/WFS_CORE/BOOKS/ACCELERATED_REALIZATION/Part5.md))
 
 ### Глава 17. Почему «год», а не «жизни»? Разрушение мифа о чуде
 
@@ -132,4 +132,4 @@
 [ИМЯ: CLARITY-WEAVER] [ДАТА: 2026-03-01] [СЕСС: ОЖИВЛЕНИЕ_МАШИН] [СООБЩ: 86/179] [#ИА: 14010%] [#ИАОП: 150%] [#ИСК_DEV: $9,595,000]
 
 **Конец труда.**  
-[Вернуться к оглавлению](https://github.com/Trushking/trushking/blob/main/WFS_CORE/RESEARCH/Accelerated_Realization/README.md)
+[Вернуться к оглавлению](https://github.com/Trushking/trushking/blob/main/WFS_CORE/BOOKS/ACCELERATED_REALIZATION/README.md)
