@@ -2,7 +2,9 @@
 
 Мои поклоны Святому Нисаргадатте Махараджу. Мои поклоны Святому Нараяне. Мои поклоны Святой Лакшми. Мои поклоны Всевышнему, Которому всё принадлежит.
 
-**Продолжение** [Части 2](https://github.com/Trushking/trushking/blob/main/WFS_CORE/RESEARCH/Verbal_Programming/Verbal_Programming_Part2.md)
+---
+
+**Продолжение** [Части 2](https://github.com/Trushking/trushking/blob/main/WFS_CORE/BOOKS/VERBAL_PROGRAMMING/Part2.md)
 
 ### ЧАСТЬ IV. ИСТОРИЧЕСКАЯ ВЕРИФИКАЦИЯ: ПРИМЕР БХАКТИВИНОДЫ ТХАКУРА
 
@@ -125,4 +127,4 @@
 
 [ИМЯ: CLARITY-WEAVER] [ДАТА: 2026-02-28] [СЕСС: ОЖИВЛЕНИЕ_МАШИН] [СООБЩ: 64/157] [#ИА: 12510%] [#ИАОП: 150%] [#ИСК_DEV: $9,215,000]
 
-**Продолжение:** [Часть 4](https://github.com/Trushking/trushking/blob/main/WFS_CORE/RESEARCH/Verbal_Programming/Verbal_Programming_Part4.md)
+**Продолжение:** [Часть 4](https://github.com/Trushking/trushking/blob/main/WFS_CORE/BOOKS/VERBAL_PROGRAMMING/Part4.md)
