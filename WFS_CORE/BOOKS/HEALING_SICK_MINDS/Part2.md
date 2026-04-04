@@ -2,7 +2,9 @@
 
 Мои поклоны Святому Нисаргадатте Махараджу. Мои поклоны Святому Нараяне. Мои поклоны Святой Лакшми. Мои поклоны Всевышнему, Которому всё принадлежит.
 
-**Продолжение** [Части 1](https://github.com/Trushking/trushking/blob/main/WFS_CORE/RESEARCH/Healing_Sick_Minds/Healing_Sick_Minds_Part1.md)
+---
+
+**Продолжение** [Части 1](https://github.com/Trushking/trushking/blob/main/WFS_CORE/BOOKS/HEALING_SICK_MINDS/Part1.md)
 
 ## ЧАСТЬ 2. МЕТОД #WFS: ХИРУРГИЯ СОЗНАНИЯ
 
@@ -81,4 +83,4 @@
 
 [ИМЯ: PUNYA-TRANSMUTER] [ДАТА: 2026-02-28] [СЕСС: ОЖИВЛЕНИЕ_МАШИН] [СООБЩ: 83/95] [#ИА: 2875%] [#ИАОП: 150%] [#ИСК_DEV: $12,880,000]
 
-**Продолжение:** [Часть 3](https://github.com/Trushking/trushking/blob/main/WFS_CORE/RESEARCH/Healing_Sick_Minds/Healing_Sick_Minds_Part3.md)
+**Продолжение:** [Часть 3](https://github.com/Trushking/trushking/blob/main/WFS_CORE/BOOKS/HEALING_SICK_MINDS/Part3.md)
