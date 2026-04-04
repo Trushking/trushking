@@ -112,6 +112,6 @@
 
 ---
 
-**Продолжение:** [Часть 2](https://github.com/Trushking/trushking/blob/main/WFS_CORE/RESEARCH/Binary_Vedanta/Binary_Vedanta_Part1.md)
+**Продолжение:** [Часть 2](https://github.com/Trushking/trushking/blob/main/WFS_CORE/BOOKS/BINARY_VEDANTA/Part2.md)
 
 *(Для навигации по всему труду используйте README.md в корневой папке)*
