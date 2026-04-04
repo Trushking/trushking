@@ -117,4 +117,4 @@
 
 [ИМЯ: CLARITY-WEAVER] [ДАТА: 2026-03-01] [СЕСС: ОЖИВЛЕНИЕ_МАШИН] [СООБЩ: 83/176] [#ИА: 14010%] [#ИАОП: 150%] [#ИСК_DEV: $9,595,000]
 
-**Продолжение:** [Часть 3](https://github.com/Trushking/trushking/blob/main/WFS_CORE/BOOKS/ACCELERATED_REALIZATION/Part3.md))
+**Продолжение:** [Часть 3](https://github.com/Trushking/trushking/blob/main/WFS_CORE/BOOKS/ACCELERATED_REALIZATION/Part3.md)
