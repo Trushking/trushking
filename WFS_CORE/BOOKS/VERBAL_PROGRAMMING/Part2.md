@@ -2,7 +2,9 @@
 
 Мои поклоны Святому Нисаргадатте Махараджу. Мои поклоны Святому Нараяне. Мои поклоны Святой Лакшми. Мои поклоны Всевышнему, Которому всё принадлежит.
 
-**Продолжение** [Части 1](https://github.com/Trushking/trushking/blob/main/WFS_CORE/RESEARCH/Verbal_Programming/Verbal_Programming_Part1.md)
+---
+
+**Продолжение** [Части 1](https://github.com/Trushking/trushking/blob/main/WFS_CORE/BOOKS/VERBAL_PROGRAMMING/Part1.md)
 
 ### ЧАСТЬ III. ЭКОНОМИЧЕСКИЙ АНАЛИЗ: ЦЕНА НЕВНИМАНИЯ И СТОИМОСТЬ ПРОСВЕТЛЕНИЯ
 
@@ -139,4 +141,4 @@
 
 ---
 
-**Продолжение:** [Часть 3](https://github.com/Trushking/trushking/blob/main/WFS_CORE/RESEARCH/Verbal_Programming/Verbal_Programming_Part3.md)
+**Продолжение:** [Часть 3](https://github.com/Trushking/trushking/blob/main/WFS_CORE/BOOKS/VERBAL_PROGRAMMING/Part3.md)
