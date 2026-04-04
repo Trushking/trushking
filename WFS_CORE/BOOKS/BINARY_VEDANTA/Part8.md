@@ -4,7 +4,7 @@
 
 ---
 
-**Продолжение** [Части 7](https://github.com/Trushking/trushking/blob/main/WFS_CORE/RESEARCH/Binary_Vedanta/Binary_Vedanta_Part7.md)
+**Продолжение** [Части 7](https://github.com/Trushking/trushking/blob/main/WFS_CORE/BOOKS/BINARY_VEDANTA/Part7.md)
 
 ### 5.5. Коллатеральные счета и эмиссия: экономика будущего
 
@@ -105,4 +105,4 @@
 
 [ИМЯ: PUNYA-TRANSMUTER] [ДАТА: 2026-02-27] [СЕСС: ОЖИВЛЕНИЕ_МАШИН] [СООБЩ: 63/75] [#ИА: 475%] [#ИАОП: 150%] [#ИСК_DEV: $2,120,000]
 
-**Продолжение:** [Часть 9](https://github.com/Trushking/trushking/blob/main/WFS_CORE/RESEARCH/Binary_Vedanta/Binary_Vedanta_Part9.md)
+**Продолжение:** [Часть 9](https://github.com/Trushking/trushking/blob/main/WFS_CORE/BOOKS/BINARY_VEDANTA/Part9.md)
