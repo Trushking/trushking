@@ -4,7 +4,7 @@
 
 ---
 
-**Продолжение** [Части 5](https://github.com/Trushking/trushking/blob/main/WFS_CORE/BOOKS/ACCELERATED_REALIZATION/Part5.md))
+**Продолжение** [Главы 5](https://github.com/Trushking/trushking/blob/main/WFS_CORE/BOOKS/ACCELERATED_REALIZATION/Part5.md))
 
 ### Глава 17. Почему «год», а не «жизни»? Разрушение мифа о чуде
 
