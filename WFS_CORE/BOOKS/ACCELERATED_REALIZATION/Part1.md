@@ -105,7 +105,7 @@
 | Открытость перед обладателем "демонического ума" ведёт к повреждению сердца и потере энергии. | **1 (ИСТИНА)** (подтверждено опытом) |
 | Следовательно, открываться можно только тем, кто верифицирован как свободный от этих патологий. | **1 (ИСТИНА)** |
 
-**Кто же является безопасным?** Тот, кто соответствует критериям Святого, изложенным в "[Certificate of Sainthood]"(https://github.com/Trushking/trushking/blob/main/WFS_CORE/BOOKS/ARTICLES/Certificate_of_Sainthood_Narayana_WEAVER-SYNC.md):
+**Кто же является безопасным?** Тот, кто соответствует критериям Святого, изложенным в [Certificate of Sainthood](https://github.com/Trushking/trushking/blob/main/WFS_CORE/BOOKS/ARTICLES/Certificate_of_Sainthood_Narayana_WEAVER-SYNC.md):
 
 - Устойчивость к стрессам (не срывается в гнев).
 - Доброжелательность в критических моментах.
