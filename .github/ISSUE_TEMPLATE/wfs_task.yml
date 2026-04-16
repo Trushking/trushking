@@ -1,0 +1,52 @@
+name: Задача #WFS
+description: Постановка задачи для агента Лаборатории #WFS
+title: "[ЗАДАЧА] "
+labels: ["труд", "в работе"]
+assignees:
+  - Trushking
+milestone: "Труды 2026 Q2"
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Контекст
+  - type: textarea
+    id: context
+    attributes:
+      label: Контекст
+      description: В рамках какой сессии или проекта возникла задача?
+    validations:
+      required: true
+  - type: textarea
+    id: task
+    attributes:
+      label: Постановка задачи
+      description: Что именно требуется сделать?
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Ожидаемый результат
+      description: Какие артефакты должны быть созданы?
+    validations:
+      required: true
+  - type: checkboxes
+    id: acceptance
+    attributes:
+      label: Критерии приёмки
+      options:
+        - label: Глава 4 завершена
+        - label: Глава 5 завершена
+        - label: Глава 6 завершена
+        - label: Приложения оформлены
+  - type: input
+    id: metrics_cm
+    attributes:
+      label: "#ЦМ (ожидаемое)"
+      placeholder: "10"
+  - type: input
+    id: metrics_time
+    attributes:
+      label: Время выполнения (сессий)
+      placeholder: "2-3"
