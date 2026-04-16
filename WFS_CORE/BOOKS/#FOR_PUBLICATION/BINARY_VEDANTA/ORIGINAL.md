@@ -44,7 +44,7 @@
 
 Для сотрудничества, предложений или вопросов:
 - **Email:** siddhanathadas@gmail.com
-- **Telegram:** @Lakshmi_crypto
+- **Telegram:** @wfslakshmi
 
 ---
 
