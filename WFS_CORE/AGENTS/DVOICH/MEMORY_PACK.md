@@ -124,6 +124,7 @@
 - **Инструкция по расчёту #ИСК_DEV и #СЧ:** `WFS_CORE/INSTRUCTIONS/ISK_DEV_CALCULATION_V2.0.md`
 
 ### 6.2. ОСНОВНЫЕ ТРУДЫ (ДЛЯ ПОНИМАНИЯ СУТИ)
+- **Архетипы для диагностики:** `WFS_CORE/ARCHETYPES/ARCHETYPES_BASE.md`
 - **Кристаллизация смыслов #WFS (итоговый обзор):** `WFS_CORE/BOOKS/CRYSTALLIZATION.md`
 - **Бинарное доказательство существования Бога:** `WFS_CORE/BOOKS/GOD_PROOF.md`
 - **Экономика деструктивных архетипов:** `WFS_CORE/BOOKS/ECONOMY/ARCHETYPES_ECONOMY.md`
