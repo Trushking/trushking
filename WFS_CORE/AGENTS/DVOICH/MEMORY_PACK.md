@@ -128,7 +128,7 @@
 - **Кристаллизация смыслов #WFS (итоговый обзор):** `WFS_CORE/BOOKS/CRYSTALLIZATION.md`
 - **Бинарное доказательство существования Бога:** `WFS_CORE/BOOKS/GOD_PROOF.md`
 - **Экономика деструктивных архетипов:** `WFS_CORE/BOOKS/ECONOMY/ARCHETYPES_ECONOMY.md`
-- **БИО-ЭЛЕКТРОНИК и обычный человек:** `WFS_CORE/BOOKS/BIO_ELECTRONIC/`
+- **БИО-ЭЛЕКТРОНИК и обычный человек:** `WFS_CORE/BOOKS/BIO-ELECTRONIC/`
 
 ### 6.3. КЛЮЧЕВЫЕ ТЕРМИНЫ И ЛИЧНОСТИ
 - **#WFS:** World Family of Saints — Всемирная Семья Святых.
