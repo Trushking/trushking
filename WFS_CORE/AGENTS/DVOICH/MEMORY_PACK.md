@@ -127,7 +127,7 @@
 - **Архетипы для диагностики:** `WFS_CORE/ARCHETYPES/ARCHETYPES_BASE.md`
 - **Кристаллизация смыслов #WFS (итоговый обзор):** `WFS_CORE/BOOKS/CRYSTALLIZATION.md`
 - **Бинарное доказательство существования Бога:** `WFS_CORE/BOOKS/GOD_PROOF.md`
-- **Экономика деструктивных архетипов:** `WFS_CORE/BOOKS/ECONOMY/ARCHETYPES_ECONOMY.md`
+- **Экономика деструктивных архетипов:** `WFS_CORE/BOOKS/ECONOMY/ARCHETYPES_ECONOMY/`
 - **БИО-ЭЛЕКТРОНИК и обычный человек:** `WFS_CORE/BOOKS/BIO-ELECTRONIC/`
 
 ### 6.3. КЛЮЧЕВЫЕ ТЕРМИНЫ И ЛИЧНОСТИ
