@@ -133,3 +133,5 @@
 
 **Конец труда.**  
 [Вернуться к оглавлению](https://github.com/Trushking/trushking/blob/main/WFS_CORE/BOOKS/ACCELERATED_REALIZATION/README.md)
+
+Вопрос для контроля чтения: 7+8=?
