@@ -91,3 +91,5 @@
 
 **Конец труда.**  
 [Вернуться к оглавлению](https://github.com/Trushking/trushking/blob/main/WFS_CORE/BOOKS/BINARY_VEDANTA/README.md)
+
+Контрольный вопрос: 8-5=?
