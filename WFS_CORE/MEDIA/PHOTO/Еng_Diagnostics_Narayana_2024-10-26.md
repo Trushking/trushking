@@ -1,5 +1,3 @@
----
-
 **DIAGNOSTIC RESULTS**
 
 **Subject:** Trushking Oleg Gennadievich  
