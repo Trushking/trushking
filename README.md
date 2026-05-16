@@ -1,6 +1,6 @@
 #WFS_CORE: ROI 645% (p<0.0001) | Суд РФ 2-640/2024
 #ИСК_DEV Challenge: 1 нед #СС → #ИА↑? Отчёт в Issues
-Telegram: @wfslakshmi | Email: siddhanathadas@gmail.com
+Telegram: @wfslakshmi | Email: wfstrushking@gmail.com, bfwss@mail.ru
 
 # WFS CORPUS KNOWLEDGE — Корпус знаний Всемирной Семьи Святых (ВСС/#WFS)
 
