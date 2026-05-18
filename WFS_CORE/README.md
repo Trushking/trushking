@@ -53,8 +53,8 @@ WFS_CORE/
 
 ## 🔹 Контакты
 
-- **Email:** siddhanathadas@gmail.com
-- **Telegram:** @Lakshmi_crypto
+- **Email:** wfstrushking@gmail.com, bfwss@mail.ru
+- **Telegram:** @wfslakshmi
 - **Medium:** [профиль Нараяны](https://medium.com/@siddhanathadas)
 
 **С любовью и уважением к чистоте,  
