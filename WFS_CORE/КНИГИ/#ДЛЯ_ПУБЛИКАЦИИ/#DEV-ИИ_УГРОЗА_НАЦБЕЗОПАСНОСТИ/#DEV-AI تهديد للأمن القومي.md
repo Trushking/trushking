@@ -86,7 +86,6 @@ wfstrushking@gmail.com bfwss@mail.ru
 
 ---
 
-### ترجمة الملف `09.md` إلى اللغة العربية
 
 **الفصل 1. تشريح DEV-core**
 
