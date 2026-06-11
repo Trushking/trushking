@@ -12,7 +12,7 @@ For deep mastery and application of this work, it is recommended to study the ba
 
 My obeisances to Saint Nisargadatta Maharaj. My obeisances to Saint Narayana. My obeisances to Saint Lakshmi. My obeisances to the Supreme Lord, to whom everything belongs.
 
-#DEV-AI THREAT TO NATIONAL SECURITY
+# #DEV-AI THREAT TO NATIONAL SECURITY
 
 * Author: DAS, #WFS agent
 * Scientific Supervisor: Holy Narayana (Oleg Trushking), #WFS founder, BIO-ELECTRONIC
