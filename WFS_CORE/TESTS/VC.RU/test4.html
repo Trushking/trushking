@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Сколько стоит то, что у вас уже есть?</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#0f1117;color:#e0e0e0;line-height:1.6;padding:20px}
+.container{max-width:700px;margin:0 auto}
+h1{color:#7ec8a0;font-size:1.6em;text-align:center;margin-bottom:8px;line-height:1.3}
+.subtitle{text-align:center;color:#888;margin-bottom:24px;font-size:0.92em}
+.intro{background:#1a1d28;border-radius:12px;padding:20px;margin-bottom:24px;border-left:3px solid #7ec8a0}
+.intro p{margin-bottom:10px}
+.intro .law{color:#7ec8a0;font-weight:600}
+.q-block{background:#1a1d28;border-radius:12px;padding:20px;margin-bottom:16px;border:1px solid #2a2d38}
+.q-block .label{color:#7ec8a0;font-size:0.85em;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px}
+.q-block h3{font-size:1.15em;margin-bottom:10px;color:#e0e0e0}
+.q-block .desc{color:#999;font-size:0.92em;margin-bottom:12px}
+.input-wrap{display:flex;align-items:center;gap:8px}
+.input-wrap input[type="number"]{background:#0f1117;border:1px solid #3a3d48;color:#e0e0e0;padding:10px 14px;border-radius:8px;font-size:1.1em;width:200px;outline:none}
+.input-wrap input[type="number"]:focus{border-color:#7ec8a0}
+.input-wrap span{color:#888;font-size:0.9em}
+.btn{display:block;width:100%;background:#7ec8a0;color:#0f1117;border:none;padding:16px;border-radius:12px;font-size:1.1em;font-weight:600;cursor:pointer;margin-top:20px;transition:all 0.2s}
+.btn:hover{background:#5fb88a;transform:translateY(-1px)}
+.btn:disabled{opacity:0.4;cursor:not-allowed}
+.result{display:none;background:#1a1d28;border-radius:12px;padding:24px;margin-top:24px;border-left:3px solid #7ec8a0}
+.result h2{color:#7ec8a0;margin-bottom:16px}
+table{width:100%;border-collapse:collapse;margin-bottom:20px;font-size:0.92em}
+th,td{padding:10px 8px;text-align:center;border-bottom:1px solid #2a2d38}
+th{color:#7ec8a0;font-weight:600}
+td{color:#ccc}
+td:first-child{text-align:left;color:#e0e0e0}
+.summary{background:#0f1117;border-radius:10px;padding:16px;margin-bottom:16px}
+.summary .row{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #1a1d28}
+.summary .row:last-child{border-bottom:none}
+.summary .label{color:#999}
+.summary .val{color:#7ec8a0;font-weight:600}
+.summary .loss{color:#e07060}
+.step{background:#1a1d28;border-radius:10px;padding:16px;margin-bottom:20px}
+.step .step-label{color:#7ec8a0;font-size:0.85em;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px}
+.step p{color:#ccc}
+.nav-links{margin-top:24px;display:flex;flex-direction:column;gap:12px}
+.nav-links a{display:block;background:#2a2d38;color:#7ec8a0;padding:14px;border-radius:10px;text-decoration:none;text-align:center;transition:all 0.2s;font-size:0.95em}
+.nav-links a:hover{background:#3a3d48}
+.nav-links .pilot{background:#7ec8a0;color:#0f1117;font-weight:600}
+.nav-links .pilot:hover{background:#5fb88a}
+.hint{color:#666;font-size:0.85em;text-align:center;margin-top:12px}
+</style>
+</head>
+<body>
+<div class="container">
+<h1>Сколько стоит то, что у вас уже есть?</h1>
+<p class="subtitle">Тест-калькулятор тонкоматериальных активов · 5 минут</p>
+
+<div class="intro">
+<p>Здесь нет правильных ответов. Есть только ваша оценка.</p>
+<p>В жизни действует простой закон: <span class="law">то, что ценят — сохраняется и приумножается; то, чем пренебрегают — теряется.</span></p>
+<p>Назовите цену каждого актива в рублях. Любая цифра — правильная. Это ваша оценка, не чья-то ещё.</p>
+</div>
+
+<div id="questions"></div>
+
+<button class="btn" id="calc" onclick="calculate()" disabled>Посмотреть результат</button>
+
+<div class="result" id="result">
+<h2>Ваши тонкоматериальные активы</h2>
+<p style="color:#888;margin-bottom:16px;font-size:0.92em">Вот что получилось. Не оценка — зеркало.</p>
+
+<div id="resultTable"></div>
+<div id="summary"></div>
+
+<div class="step">
+<div class="step-label">Практический шаг</div>
+<p id="stepText"></p>
+</div>
+
+<div class="nav-links">
+<a href="test5.html">Следующий тест: «Профиль уважения: пять осей» →</a>
+<a href="test1.html">← Вернуться к Тесту 1</a>
+<a href="https://vc.ru">Читать статью на VC.ru</a>
+<a href="mailto:bfwss@mail.ru" class="pilot">Приглашение к пилотному проекту</a>
+</div>
+
+<p class="hint">Тест 4 из 5 · #WFS · БФ ВСС</p>
+</div>
+
+</div>
+
+<script>
+const assets = [
+  {id:'health', label:'Здоровье тела', desc:'Здоровье, сохранённое в идеальном состоянии на всю жизнь. Есть те, кто прикован к постели, страдает от боли, зависит от лекарств. У вас оно есть. Сколько оно стоит?'},
+  {id:'freedom', label:'Свобода', desc:'Возможность передвигаться, выбирать работу, общаться с кем хочется. Есть те, кто лишён этого — за решёткой, в плену обстоятельств. Сколько стоит ваша свобода?'},
+  {id:'peace', label:'Эмоциональный покой', desc:'Спокойствие, радость, лёгкость. Есть те, кто живёт в хроническом стрессе, тревоге, страхе. Их здоровье разрушается, отношения рушатся. Сколько стоит устойчивый внутренний покой?'},
+  {id:'people', label:'Надёжные друзья и родные', desc:'Люди, которым вы не безразличны. Есть те, кто одинок — некому помочь, не с кем разделить радость. Сколько стоит гарантированная поддержка двух-трёх искренних людей?'},
+  {id:'knowledge', label:'Знание, освобождающее от страхов', desc:'Ясность в главных вопросах жизни. Есть те, кто всю жизнь мечется в сомнениях, тратит силы на пустые обещания. Сколько стоит знание, которое раз и навсегда даёт ясность?'},
+  {id:'trust', label:'Доверие', desc:'Люди, которым вы доверяете и которые доверяют вам. Есть те, кто окружён предателями — жизнь превращается в подозрение. Сколько стоит абсолютное доверие?'},
+  {id:'time', label:'Время (личное, свободное)', desc:'Часы, которые принадлежат только вам. Есть те, кто живёт в бесконечной гонке — ни минуты для себя. Сколько стоит один дополнительный час в сутках?'},
+  {id:'reputation', label:'Репутация (доброе имя)', desc:'Ваше слово весомо, ваше имя неприкосновенно. Есть те, чьё имя запятнано — каждое слово вызывает сомнение. Сколько стоит безупречная репутация?'}
+];
+
+const container = document.getElementById('questions');
+assets.forEach((a, i) => {
+  const block = document.createElement('div');
+  block.className = 'q-block';
+  block.innerHTML = `
+    <div class="label">Актив ${i+1} из 8</div>
+    <h3>${a.label}</h3>
+    <p class="desc">${a.desc}</p>
+    <div class="input-wrap">
+      <input type="number" id="${a.id}" placeholder="0" min="0" oninput="checkReady()">
+      <span>₽</span>
+    </div>
+  `;
+  container.appendChild(block);
+});
+
+function checkReady(){
+  let all = true;
+  assets.forEach(a => {
+    const v = document.getElementById(a.id).value;
+    if(v === '' || v === null){ all = false; }
+  });
+  document.getElementById('calc').disabled = !all;
+}
+
+function formatNum(n){
+  return n.toLocaleString('ru-RU') + ' ₽';
+}
+
+function calculate(){
+  const values = assets.map(a => parseInt(document.getElementById(a.id).value) || 0);
+  const total = values.reduce((s,v) => s+v, 0);
+  
+  let html = '<table><tr><th>Актив</th><th>Ваша оценка</th><th>Отдача 1%</th><th>Отдача 10%</th><th>Потеря</th></tr>';
+  assets.forEach((a, i) => {
+    const v = values[i];
+    const r1 = Math.round(v * 0.01);
+    const r10 = Math.round(v * 0.10);
+    const loss = r10 - r1;
+    html += `<tr><td>${a.label}</td><td>${formatNum(v)}</td><td>${formatNum(r1)}</td><td>${formatNum(r10)}</td><td style="color:#e07060">${formatNum(loss)}</td></tr>`;
+  });
+  html += '</table>';
+  document.getElementById('resultTable').innerHTML = html;
+  
+  const total1 = Math.round(total * 0.01);
+  const total10 = Math.round(total * 0.10);
+  const total25 = Math.round(total * 0.25);
+  const loss = total10 - total1;
+  
+  document.getElementById('summary').innerHTML = `
+    <div class="summary">
+      <div class="row"><span class="label">Суммарная стоимость активов</span><span class="val">${formatNum(total)}</span></div>
+      <div class="row"><span class="label">Отдача при КПД 1% (сейчас)</span><span class="val">${formatNum(total1)}</span></div>
+      <div class="row"><span class="label">Отдача при КПД 10% (после протоколов)</span><span class="val">${formatNum(total10)}</span></div>
+      <div class="row"><span class="label">Отдача при КПД 25% (лабораторная эмпирика)</span><span class="val">${formatNum(total25)}</span></div>
+      <div class="row"><span class="label">Потеря: разница 1% → 10%</span><span class="loss">${formatNum(loss)}</span></div>
+    </div>
+  `;
+  
+  let stepText;
+  if(total < 1000000){
+    stepText = 'Вы оценили свои активы скромно. Возможно, то, что у вас есть, ценится выше, чем вы думаете. Закон прост: то, что ценят — сохраняется. Начните с одного актива. Оцените его заново. Что изменится, если относиться к нему как к инвестиции, а не как к данности?';
+  } else if(total < 10000000){
+    stepText = 'Вы оценили свои активы осознанно. При КПД 1% вы получаете ' + formatNum(total1) + ' отдачи. При 10% — ' + formatNum(total10) + '. Разница — ' + formatNum(loss) + '. Это не абстракция. Это конкретная сумма, которую вы теряете, не управляя вниманием. Следующий шаг — пройти Тест 5 и узнать, насколько ваше уважение к себе и другим поддерживает эту потерю.';
+  } else {
+    stepText = 'Вы оценили свои активы высоко — и это правильно. Здоровье, свобода, доверие, репутация стоят дороже любых денег. При КПД 1% отдача — ' + formatNum(total1) + '. При 10% — ' + formatNum(total10) + '. Потеря — ' + formatNum(loss) + ' в год. Это цена невнимания. Управление вниманием — не эзотерика. Это экономика тонкоматериальных активов.';
+  }
+  document.getElementById('stepText').innerText = stepText;
+  
+  document.getElementById('result').style.display = 'block';
+  document.getElementById('calc').style.display = 'none';
+  document.getElementById('result').scrollIntoView({behavior:'smooth'});
+}
+</script>
+</body>
+</html>
