@@ -1,10 +1,11 @@
+# BUSINESS SUTRAS #WFS: MANAGING EFFICIENCY THROUGH WASTE ELIMINATION
+
 
 <img width="1002" height="509" alt="Бизнес сутра 1" src="https://github.com/user-attachments/assets/ff09eb2e-3eeb-4da4-80cd-1740c9fdd5f9" />
 
 <img width="1046" height="563" alt="Бизнес сутра 2" src="https://github.com/user-attachments/assets/af08cb22-11d4-47f3-a808-bc2bdf51f05a" />
 
 
-# BUSINESS SUTRAS #WFS: MANAGING EFFICIENCY THROUGH WASTE ELIMINATION
 
 **Audience:** executives, government officials
 
