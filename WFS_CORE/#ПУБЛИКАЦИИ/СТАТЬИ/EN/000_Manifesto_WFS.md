@@ -1,3 +1,9 @@
+
+
+<img width="1024" height="1024" alt="Манифест ВСС" src="https://github.com/user-attachments/assets/4da41939-57fd-45f4-b180-7ddfd5cee281" />
+
+
+
 # THE PRESENCE DEFICIT: WHY EFFICIENCY IS 5% AND HOW TO FIX IT
 
 **Audience:** executives, government officials
