@@ -1,3 +1,8 @@
+
+<img width="501" height="255" alt="Бизнес сутра 1 мал" src="https://github.com/user-attachments/assets/49e922ff-1617-464c-ad81-376f608f8d2f" />
+
+<img width="523" height="282" alt="Бизнес сутра 2 мал" src="https://github.com/user-attachments/assets/de712189-af4f-4ec4-96b2-83f370219d3f" />
+
 # BUSINESS SUTRAS #WFS: MANAGING EFFICIENCY THROUGH WASTE ELIMINATION
 
 **Audience:** executives, government officials
