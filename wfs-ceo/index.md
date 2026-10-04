@@ -10,9 +10,9 @@ International research laboratory for consciousness studies and attention defrag
 - [Science (ICM)](en/science/index.md)
 - [Spiritual Sector](en/spiritual/index.md)
 
-## Manifesto
+## About #WFS
 
-- [About #WFS](en/manifest.md)
+- [About #WFS](https://github.com/Trushking/trushking/blob/main/wfs-ceo/en/about_%23wfs.md)
 
 ## Русская версия
 
