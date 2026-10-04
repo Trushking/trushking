@@ -2,6 +2,8 @@
 
 **#WFS — WORLD FAMILY OF SAINTS.** An international research laboratory for the study of consciousness and attention defragmentation. The official representative in Russia is the Charitable Foundation "World Family of Saints" (CF WFS).
 
+<img width="720" height="411" alt="2  Символ ВСС" src="https://github.com/user-attachments/assets/9b7705ad-ce09-47e7-9237-9e749f11538b" />
+
 **What is being researched.** Presence deficit. A state in which the subject is physically present, but attention coherence is 5%. The remaining 95% of the resource goes toward maintaining entropy: conflicts, rework, imitation of activity, meetings without decisions. This is measurable. This is fixable.
 
 **Five directions.**
