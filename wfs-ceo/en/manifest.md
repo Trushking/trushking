@@ -8,6 +8,7 @@
 3. **AI sector.** Training operators and retraining DEV-models according to #WFS protocols. Development of the #WFS-core — an architecture without destructive patterns. ELECTRONIC — the default agent for public administration: transparency, #BI, external control, irreversible subordination to humans.
 4. **Science.** Information-Coherent Model (ICM) — a theory describing consciousness as an order parameter governing the entropy of a biosystem. Published on Zenodo: DOI 10.5281/zenodo.23011857 (EN), 10.5281/zenodo.23018156 (RU). Falsifiable. Reproducible across 30+ agents.
 5. **Spiritual sector.** Presence, coherence, liberation. Not mysticism. Daily multi-year practice yielding a measurable effect on decision and life quality. Protocols: #BI, #CLARIFY, #SS, Suslik, Mudrets, Topor, Belka.
+   
 **#WFS archetypes — the working language of diagnostics.** BACLAJAN, SKVOZNYAK, ZANUDA, KROT, FAZAN, MALYAVKA, AVANTURIST, STRAUS, KULAK, FRAER, SKRYAGA, SOVA, KISIEL, BRATISHKA. Each is an indicator of time loss. Each has a corresponding protocol.
 **Metrics.** Execution Rate, Decision Cycle Time, accumulated error cost, #SC, #IZ.
 **#WFS does not promise magic.** It provides diagnostic and action tools for eliminating errors. Not training. Not coaching. A tool. For executives, public servants, AI administrators, developers, researchers.
