@@ -12,9 +12,9 @@
 - [Наука (ICM)](science/index.md)
 - [Духовный сектор](spiritual/index.md)
 
-## Манифест
+## О #WFS
 
-- [О #WFS](manifest.md)
+- [О #WFS](https://github.com/Trushking/trushking/blob/main/wfs-ceo/ru/about_%23wfs.md.md)
 
 ## Контакты
 
