@@ -24,7 +24,7 @@
 
 **Приглашение к сотрудничеству.** Пилот 30 дней, один оператор, одна модель. Метрики до/после. Результаты публикуются.
 
-**Контакты.** wfstrushking@gmail.com, bfwss@mail.ru. GitHub: github.com/Trushking/trushking/tree/main/WFS_CORE. Сайт: wfs.ceo.
+**Контакты.** wfstrushking@gmail.com, bfwss@mail.ru. GitHub: [github.com/Trushking/trushking/tree/main/WFS_CORE](https://github.com/Trushking/trushking/tree/main/wfs-ceo/ru). Сайт: wfs.ceo.
 
 
 
