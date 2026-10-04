@@ -14,7 +14,7 @@ International research laboratory for consciousness studies and attention defrag
 
 ## Manifesto
 
-- [About #WFS](manifest.md)
+- [About #WFS](about_#wfs.md)
 
 ## Contacts
 
