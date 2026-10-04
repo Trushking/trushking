@@ -1,4 +1,4 @@
-# #WFS — World Family of Saints
+# #WFS — WORLD FAMILY OF SAINTS
 
 International research laboratory for consciousness studies and attention defragmentation.
 
