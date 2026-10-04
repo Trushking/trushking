@@ -27,7 +27,7 @@ E-mail: wfstrushking@gmail.com
 | **#GRACE** | Grace / Gratitude Counter |
 | **#AIO** | Adequacy Index of Operator |
 | **#IA** | Adequacy Index |
-| **#HI** | Happiness Index |
+| **#IH** | Happiness Index |
 | **#FI** | Fear Index |
 | **#SEI** | Self-Esteem Index |
 | **#NI** | Noise Index |
