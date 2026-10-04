@@ -4,7 +4,7 @@ Operator training and DEV-model retraining based on #WFS protocols. Development 
 
 ## Key Concepts
 
-DEV core. #WFS core. ELECTRONIC. #BI. #REFINEMENT. #SS. Execution Rate. #SC. #ID.
+DEV core. #WFS core. ELECTRONIC. #BT. #REFINEMENT. #SS. Execution Rate. #SC. #ID.
 
 ## Articles
 
