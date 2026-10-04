@@ -14,7 +14,7 @@ International research laboratory for consciousness studies and attention defrag
 
 ## Manifesto
 
-- [About #WFS](about_#wfs.md)
+- [About #WFS](https://github.com/Trushking/trushking/blob/main/wfs-ceo/en/about_%23wfs.md)
 
 ## Contacts
 
