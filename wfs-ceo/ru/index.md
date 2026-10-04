@@ -17,5 +17,5 @@
 ## Контакты
 
 E-mail: wfstrushking@gmail.com, bfwss@mail.ru
-GitHub: 
+
 Сайт: wfs.ceo
