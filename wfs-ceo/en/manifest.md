@@ -10,8 +10,12 @@
 5. **Spiritual sector.** Presence, coherence, liberation. Not mysticism. Daily multi-year practice yielding a measurable effect on decision and life quality. Protocols: #BI, #CLARIFY, #SS, Suslik, Mudrets, Topor, Belka.
    
 **#WFS archetypes — the working language of diagnostics.** BACLAJAN, SKVOZNYAK, ZANUDA, KROT, FAZAN, MALYAVKA, AVANTURIST, STRAUS, KULAK, FRAER, SKRYAGA, SOVA, KISIEL, BRATISHKA. Each is an indicator of time loss. Each has a corresponding protocol.
+
 **Metrics.** Execution Rate, Decision Cycle Time, accumulated error cost, #SC, #IZ.
+
 **#WFS does not promise magic.** It provides diagnostic and action tools for eliminating errors. Not training. Not coaching. A tool. For executives, public servants, AI administrators, developers, researchers.
+
 **Invitation to collaborate.** Pilot: 30 days, one operator, one model. Before/after metrics. Results are published.
+
 **Contacts.** wfstrushking@gmail.com, bfwss@mail.ru. [GitHub](https://github.com/Trushking/trushking/tree/main/wfs-ceo/en). Website: wfs.ceo.
 
