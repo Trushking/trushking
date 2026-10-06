@@ -1,0 +1,1 @@
+run_id,task_id,paired_task_id,condition,started_at,agent,model,model_version,protocol_version,task_type,max_turns,turns,clarification_questions,operator_corrections,unsupported_claims,accepted,blind_quality_1_5,elapsed_seconds,operator_IH,operator_SEI,operator_FI,notes
