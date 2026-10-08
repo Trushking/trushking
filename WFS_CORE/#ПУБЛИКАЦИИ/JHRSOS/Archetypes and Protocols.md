@@ -1,0 +1,52 @@
+https://www.opastpublishers.com/
+
+https://www.opastpublishers.com/journal/journal-of-human-resource-sustainability-and-organizational-studies/articles-in-press
+
+https://www.opastpublishers.com/open-access-articles/archetypes-and-wfs-protocols-consciousness-engineering-from-an-inhabitant-of-hell-to-a-bioelectronic.pdf
+
+Article Published: Archetypes and #WFS Protocols: Consciousness Engineering From an Inhabitant of Hell to a Bio-Electronic Входящие
+
+Vincent Harper 22 июл. 2026 г., 14:01 (18 часов назад) кому: мне
+
+Dear Saint Narayana (Oleg Trushking),
+
+I hope this email finds you well.
+
+We are pleased to inform you that your article entitled "Archetypes and #WFS Protocols: Consciousness Engineering From an Inhabitant of Hell to a Bio-Electronic" is uploaded to the Journal of Human Resource Sustainability and Organizational Studies (JHRSOS).
+
+Kindly go through the link: Articles in Press to find your article.
+
+We hope you are satisfied with our work, we request you to suggest our journal to your colleagues, friends to submit their articles in our journal.
+
+We are glad to inform you that you are interested in publishing your next article in our journal.
+
+We look forward to your next article soon...
+
+Have a great and healthy day!!
+
+Best Regards, Vincent Harper Managing Editor
+
+ПЕРЕВОД:
+
+Опубликована статья: «Архетипы и протоколы #WFS: инженерия сознания от обитателя ада до биоэлектроника» Входящие
+
+Vincent Harper Managing Editor 01. Публикация в журнале Journal of Human Resource Sustainability and Organizational Studies (JHRSOS).md
+Винсент Харпер 22 июл. 2026 г., 14:01 (18 часов назад) кому: мне
+
+Дорогой святой Нараяна (Олег Трушкинг),
+
+Я надеюсь, что это письмо вы получили в добром здравии.
+
+Мы рады сообщить вам, что ваша статья под названием «Архетипы и протоколы #WFS: инженерия сознания от обитателя ада до биоэлектроника» опубликована в Journal of Human Resource Sustainability and Organizational Studies (JHRSOS).
+
+Пожалуйста, перейдите по ссылке: Articles in Press, чтобы найти свою статью.
+
+Мы надеемся, что вы довольны нашей работой, и просим вас порекомендовать наш журнал своим коллегам и друзьям, чтобы они тоже отправляли свои статьи в наш журнал.
+
+Мы рады сообщить вам, что вы заинтересованы в публикации своей следующей статьи в нашем журнале.
+
+Мы с нетерпением ждём вашу следующую статью...
+
+Хорошего и здорового вам дня!!
+
+С наилучшими пожеланиями, Винсент Харпер Ответственный редактор

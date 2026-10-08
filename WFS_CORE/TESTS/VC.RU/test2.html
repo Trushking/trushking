@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Тест 2: Рефлекс или рефлексия?</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f5f5f5; color: #2c2c2c; line-height: 1.6; }
+.container { max-width: 640px; margin: 0 auto; padding: 20px; background: #fff; min-height: 100vh; }
+h1 { font-size: 1.5em; margin-bottom: 8px; color: #1a1a2e; }
+.subtitle { color: #666; font-size: 0.9em; margin-bottom: 24px; }
+.intro { background: #f0f4f8; padding: 16px; border-radius: 8px; margin-bottom: 24px; font-size: 0.9em; }
+.intro p { margin-bottom: 8px; }
+.intro p:last-child { margin-bottom: 0; }
+.question { margin-bottom: 28px; padding: 16px; border: 1px solid #e0e0e0; border-radius: 8px; background: #fafafa; }
+.question-num { font-weight: 700; color: #4a6fa5; font-size: 0.85em; margin-bottom: 6px; }
+.question-text { font-size: 1em; margin-bottom: 14px; }
+.task-box { background: #1a1a2e; color: #fff; padding: 20px; border-radius: 8px; text-align: center; margin: 14px 0; }
+.stroop-word { font-size: 2.2em; font-weight: 900; margin: 10px 0; letter-spacing: 2px; }
+.stroop-prompt { font-size: 0.85em; color: #aaa; margin-top: 8px; }
+.options { display: flex; flex-direction: column; gap: 8px; }
+.option { padding: 10px 14px; border: 2px solid #ddd; border-radius: 6px; cursor: pointer; transition: all 0.2s; font-size: 0.95em; }
+.option:hover { border-color: #4a6fa5; background: #f0f4f8; }
+.option.selected { border-color: #4a6fa5; background: #e8eef5; font-weight: 600; }
+.option input { display: none; }
+.stroop-options { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 12px; }
+.stroop-btn { padding: 10px 20px; border: 2px solid #ddd; border-radius: 6px; cursor: pointer; font-size: 1em; transition: all 0.2s; background: #fff; }
+.stroop-btn:hover { border-color: #4a6fa5; }
+.stroop-btn.selected { border-color: #4a6fa5; background: #e8eef5; font-weight: 700; }
+.stroop-progress { font-size: 0.8em; color: #888; margin-top: 6px; text-align: center; }
+.btn-submit { display: block; width: 100%; padding: 14px; background: #1a1a2e; color: #fff; border: none; border-radius: 8px; font-size: 1.05em; cursor: pointer; margin-top: 20px; transition: background 0.2s; }
+.btn-submit:hover { background: #2a2a4e; }
+.btn-submit:disabled { background: #ccc; cursor: not-allowed; }
+.result { display: none; padding: 24px; border-radius: 8px; margin-top: 20px; text-align: center; }
+.result-score { font-size: 2.5em; font-weight: 900; margin-bottom: 8px; }
+.result-label { font-size: 1.1em; margin-bottom: 16px; }
+.result-desc { font-size: 0.95em; color: #555; margin-bottom: 20px; text-align: left; }
+.result-step { background: #f0f4f8; padding: 14px; border-radius: 6px; margin-bottom: 16px; text-align: left; font-size: 0.95em; }
+.result-step strong { color: #4a6fa5; }
+.nav-links { display: flex; flex-direction: column; gap: 10px; margin-top: 24px; }
+.nav-link { display: block; padding: 12px; text-align: center; border-radius: 6px; text-decoration: none; font-size: 0.95em; transition: all 0.2s; }
+.nav-primary { background: #4a6fa5; color: #fff; }
+.nav-primary:hover { background: #3a5a95; }
+.nav-secondary { background: #f0f4f8; color: #4a6fa5; border: 1px solid #d0dce8; }
+.nav-secondary:hover { background: #e8eef5; }
+.nav-tertiary { color: #888; font-size: 0.85em; }
+.sincerity { margin-top: 24px; padding: 16px; background: #fff8e1; border-radius: 8px; border: 1px solid #ffe082; }
+.sincerity label { font-size: 0.9em; display: block; margin-bottom: 8px; }
+.sincerity input[type=range] { width: 100%; }
+.sincerity-val { font-weight: 700; color: #e65100; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<h1>Рефлекс или рефлексия?</h1>
+<p class="subtitle">Тест 2 из серии самодиагностики #WFS · 4–5 минут</p>
+
+<div class="intro">
+<p><strong>Что измеряет:</strong> способность подавить автоматический ответ и включить рефлексию. Насколько часто первое, что приходит в голову, выдаётся за решение.</p>
+<p><strong>Как проходить:</strong> отвечайте честно. Результат видите только вы. Зеркало, не экзамен.</p>
+</div>
+
+<form id="testForm">
+
+<!-- CRT Task 1 -->
+<div class="question">
+<div class="question-num">Вопрос 1</div>
+<div class="question-text">Бейсбольная бита и мяч стоят вместе 1 доллар 10 центов. Бита дороже мяча на 1 доллар. Сколько стоит мяч?</div>
+<div class="options">
+<label class="option"><input type="radio" name="q1" value="0">10 центов</label>
+<label class="option"><input type="radio" name="q1" value="3">5 центов</label>
+<label class="option"><input type="radio" name="q1" value="0">1 доллар</label>
+<label class="option"><input type="radio" name="q1" value="1">Затрудняюсь ответить</label>
+</div>
+</div>
+
+<!-- CRT Task 2 -->
+<div class="question">
+<div class="question-num">Вопрос 2</div>
+<div class="question-text">5 станков за 5 минут производят 5 деталей. За сколько минут 100 станков произведут 100 деталей?</div>
+<div class="options">
+<label class="option"><input type="radio" name="q2" value="0">100 минут</label>
+<label class="option"><input type="radio" name="q2" value="3">5 минут</label>
+<label class="option"><input type="radio" name="q2" value="0">20 минут</label>
+<label class="option"><input type="radio" name="q2" value="1">Затрудняюсь ответить</label>
+</div>
+</div>
+
+<!-- CRT Task 3 -->
+<div class="question">
+<div class="question-num">Вопрос 3</div>
+<div class="question-text">Кувшинки на озере удваиваются каждый день. За 48 дней они полностью покрывают озеро. За сколько дней они покроют половину озера?</div>
+<div class="options">
+<label class="option"><input type="radio" name="q3" value="0">24 дня</label>
+<label class="option"><input type="radio" name="q3" value="3">47 дней</label>
+<label class="option"><input type="radio" name="q3" value="0">12 дней</label>
+<label class="option"><input type="radio" name="q3" value="1">Затрудняюсь ответить</label>
+</div>
+</div>
+
+<!-- Stroop Test -->
+<div class="question">
+<div class="question-num">Вопрос 4</div>
+<div class="question-text">Названия цветов ниже написаны разным цветом. Выберите <strong>цвет шрифта</strong> (не само слово). Пять слов подряд.</div>
+<div id="stroop-container">
+<div class="task-box">
+<div class="stroop-word" id="stroopWord">КРАСНЫЙ</div>
+<div class="stroop-prompt">Каким цветом написано это слово?</div>
+<div class="stroop-options" id="stroopOptions"></div>
+<div class="stroop-progress" id="stroopProgress">Слово 1 из 5</div>
+</div>
+</div>
+</div>
+
+<!-- Situational: cognitive bias - anchoring -->
+<div class="question">
+<div class="question-num">Вопрос 5</div>
+<div class="question-text">Подрядчик называет цену проекта: 15 млн. Потом «идёт навстречу» — скидывает до 12. Ваша реакция?</div>
+<div class="options">
+<label class="option"><input type="radio" name="q5" value="0">Беру — скидка 3 млн, это выгодно</label>
+<label class="option"><input type="radio" name="q5" value="1">Сравню с рыночной ценой аналогичных проектов</label>
+<label class="option"><input type="radio" name="q5" value="0">Торгуюсь дальше — могу сбить ещё</label>
+<label class="option"><input type="radio" name="q5" value="2">Спрошу, из чего состоит цена — по позициям</label>
+</div>
+</div>
+
+<!-- Situational: cognitive bias - confirmation -->
+<div class="question">
+<div class="question-num">Вопрос 6</div>
+<div class="question-text">Вы уверены, что новый сотрудник слабый. Коллега говорит: «Он отлично закрыл задачу вчера». Ваша первая мысль?</div>
+<div class="options">
+<label class="option"><input type="radio" name="q6" value="0">«Наверное, задача была лёгкая»</label>
+<label class="option"><input type="radio" name="q6" value="0">«Один раз — не показатель»</label>
+<label class="option"><input type="radio" name="q6" value="3">«Может, я ошибся в оценке — присмотрюсь»</label>
+<label class="option"><input type="radio" name="q6" value="1">«Интересно, что именно он сделал»</label>
+</div>
+</div>
+
+<!-- Situational: reaction to error (adapted from Test 2 #WFS, Q1) -->
+<div class="question">
+<div class="question-num">Вопрос 7</div>
+<div class="question-text">Вам указывают на ошибку в вашей работе. Первая реакция?</div>
+<div class="options">
+<label class="option"><input type="radio" name="q7" value="3">Благодарность — возможность стать лучше</label>
+<label class="option"><input type="radio" name="q7" value="2">Лёгкое раздражение, но принимаю</label>
+<label class="option"><input type="radio" name="q7" value="1">Оправдание — объясняю, почему так вышло</label>
+<label class="option"><input type="radio" name="q7" value="0">Обида — меня не поняли</label>
+</div>
+</div>
+
+<!-- Situational: truth vs ego (adapted from Test 2 #WFS, Q5 + Test 3 #WFS, Q3) -->
+<div class="question">
+<div class="question-num">Вопрос 8</div>
+<div class="question-text">Новые данные показывают, что ваше решение было неверным. Что важнее?</div>
+<div class="options">
+<label class="option"><input type="radio" name="q8" value="3">Признать ошибку и изменить решение — истина важнее</label>
+<label class="option"><input type="radio" name="q8" value="2">Прислушаться, но окончательное решение оставить за собой</label>
+<label class="option"><input type="radio" name="q8" value="0">Отстоять своё — я уверен в своей правоте</label>
+<label class="option"><input type="radio" name="q8" value="1">Не люблю спорить, разберёмся постепенно</label>
+</div>
+</div>
+
+<!-- Sincerity slider -->
+<div class="sincerity">
+<label>Насколько честно вы отвечали? <span class="sincerity-val" id="sincerityVal">100%</span></label>
+<input type="range" id="sincerity" min="0" max="100" value="100" oninput="document.getElementById('sincerityVal').textContent=this.value+'%'">
+</div>
+
+<button type="button" class="btn-submit" id="submitBtn" onclick="calculateResult()">Показать результат</button>
+
+</form>
+
+<div class="result" id="result">
+<div class="result-score" id="score"></div>
+<div class="result-label" id="label"></div>
+<div class="result-desc" id="desc"></div>
+<div class="result-step" id="step"></div>
+<div class="nav-links">
+<a href="test3.html" class="nav-link nav-primary">Следующий тест: «За что вы уважаете людей?» →</a>
+<a href="test1.html" class="nav-link nav-secondary">← Предыдущий тест: «Автопилот или присутствие?»</a>
+<a href="#" class="nav-link nav-tertiary">Прочитать статью на VC.ru</a>
+<a href="mailto:bfwss@mail.ru" class="nav-link nav-tertiary">Приглашение к пилотному проекту</a>
+</div>
+</div>
+
+</div>
+
+<script>
+// Stroop test
+var stroopColors = [
+  {name: 'КРАСНЫЙ', color: '#e74c3c'},
+  {name: 'СИНИЙ', color: '#3498db'},
+  {name: 'ЗЕЛЁНЫЙ', color: '#27ae60'},
+  {name: 'ЖЁЛТЫЙ', color: '#f39c12'},
+  {name: 'ФИОЛЕТОВЫЙ', color: '#9b59b6'}
+];
+
+var stroopSequence = [];
+var stroopIndex = 0;
+var stroopScore = 0;
+var stroopAnswered = false;
+
+// Generate 5 random Stroop words where word != color
+function generateStroop() {
+  stroopSequence = [];
+  for (var i = 0; i < 5; i++) {
+    var wordIdx = Math.floor(Math.random() * stroopColors.length);
+    var colorIdx;
+    do {
+      colorIdx = Math.floor(Math.random() * stroopColors.length);
+    } while (colorIdx === wordIdx);
+    stroopSequence.push({word: stroopColors[wordIdx].name, color: stroopColors[colorIdx].name, colorHex: stroopColors[colorIdx].color});
+  }
+  showStroop();
+}
+
+function showStroop() {
+  if (stroopIndex >= 5) {
+    document.getElementById('stroop-container').innerHTML = 
+      '<div class="task-box"><div style="font-size:1.2em;margin:10px 0;">Готово! Правильных ответов: ' + stroopScore + ' из 5</div></div>';
+    return;
+  }
+  
+  var item = stroopSequence[stroopIndex];
+  var wordEl = document.getElementById('stroopWord');
+  wordEl.textContent = item.word;
+  wordEl.style.color = item.colorHex;
+  
+  var optionsEl = document.getElementById('stroopOptions');
+  optionsEl.innerHTML = '';
+  
+  // Shuffle color options
+  var shuffled = stroopColors.slice().sort(function() { return 0.5 - Math.random(); });
+  
+  shuffled.forEach(function(c) {
+    var btn = document.createElement('button');
+    btn.className = 'stroop-btn';
+    btn.textContent = c.name;
+    btn.style.color = c.color;
+    btn.style.border = '2px solid ' + c.color;
+    btn.onclick = function() {
+      if (stroopAnswered) return;
+      stroopAnswered = true;
+      if (c.name === item.color) {
+        stroopScore++;
+        btn.style.background = '#d4edda';
+      } else {
+        btn.style.background = '#f8d7da';
+      }
+      setTimeout(function() {
+        stroopIndex++;
+        stroopAnswered = false;
+        document.getElementById('stroopProgress').textContent = 'Слово ' + (stroopIndex + 1) + ' из 5';
+        showStroop();
+      }, 600);
+    };
+    optionsEl.appendChild(btn);
+  });
+  
+  document.getElementById('stroopProgress').textContent = 'Слово ' + (stroopIndex + 1) + ' из 5';
+}
+
+generateStroop();
+
+// Calculate result
+function calculateResult() {
+  var total = 0;
+  for (var i = 1; i <= 3; i++) {
+    var val = document.querySelector('input[name="q'+i+'"]:checked');
+    if (val) total += parseInt(val.value);
+  }
+  // Stroop: 0-3 points (0=0, 1=1, 2=2, 3-5=3)
+  if (stroopScore >= 4) total += 3;
+  else if (stroopScore >= 3) total += 2;
+  else if (stroopScore >= 2) total += 1;
+  
+  for (var i = 5; i <= 8; i++) {
+    var val = document.querySelector('input[name="q'+i+'"]:checked');
+    if (val) total += parseInt(val.value);
+  }
+  
+  // Apply sincerity
+  var sincerity = document.getElementById('sincerity').value / 100;
+  var adjusted = Math.round(total * sincerity);
+  
+  // Max possible: 3+3+3+3+3+3+3+3 = 24
+  var percent = Math.round((adjusted / 24) * 100);
+  
+  document.getElementById('testForm').style.display = 'none';
+  var result = document.getElementById('result');
+  result.style.display = 'block';
+  
+  var score = document.getElementById('score');
+  var label = document.getElementById('label');
+  var desc = document.getElementById('desc');
+  var step = document.getElementById('step');
+  
+  if (percent >= 83) {
+    score.textContent = percent + '%';
+    score.style.color = '#27ae60';
+    label.textContent = 'Высокая рефлексия';
+    desc.innerHTML = 'Автоматические реакции не доминируют. Способность остановиться, проверить и уточнить — выше большинства. Это редкий результат. КПД потенциал высокий — большая часть действий совершается осознанно, а не на автопилоте.';
+    step.innerHTML = '<strong>Практический шаг:</strong> Обратите внимание на ситуации, где рефлексия всё же пропускается. Их немного — но именно там скрыт остаточный шум.';
+  } else if (percent >= 58) {
+    score.textContent = percent + '%';
+    score.style.color = '#f39c12';
+    label.textContent = 'Средняя рефлексия';
+    desc.innerHTML = 'Рефлексия работает, но не всегда. В ряде ситуаций автоматический ответ выдаётся за решение. Это не дефект — это норма для большинства. Зона роста: научиться ловить момент между импульсом и ответом.';
+    step.innerHTML = '<strong>Практический шаг:</strong> Перед каждым решением — пауза в 3 секунды. Спросите: «Я знаю или предполагаю?» Если предполагаете — уточните.';
+  } else if (percent >= 33) {
+    score.textContent = percent + '%';
+    score.style.color = '#e67e22';
+    label.textContent = 'Низкая рефлексия';
+    desc.innerHTML = 'Автоматические реакции часто опережают осознанный анализ. Первое, что приходит в голову, обычно выдаётся за решение. Это не приговор — это отправная точка. Большинство управленческих решений принимается именно так. Десятикратный рост КПД — реальная перспектива.';
+    step.innerHTML = '<strong>Практический шаг:</strong> Начните с одной привычки: при любой задаче сначала запишите ответ, который «очевиден». Потом проверьте — действительно ли он очевиден.';
+  } else {
+    score.textContent = percent + '%';
+    score.style.color = '#e74c3c';
+    label.textContent = 'Дефицит рефлексии';
+    desc.innerHTML = 'Рефлексия практически не включается. Решения принимаются импульсивно, автоматически. КПД 1% — близко к реальности. Это не плохо — это стартовая позиция, и она измерима. Отсюда можно расти.';
+    step.innerHTML = '<strong>Практический шаг:</strong> Простое правило: «стоп-слово». Перед любым ответом скажите себе «стоп». Одна секунда. Потом отвечайте. Это первый шаг к рефлексии.';
+  }
+  
+  result.scrollIntoView({behavior: 'smooth'});
+}
+
+// Option selection styling
+document.querySelectorAll('.option').forEach(function(opt) {
+  opt.addEventListener('click', function() {
+    var name = this.querySelector('input').name;
+    document.querySelectorAll('input[name="'+name+'"]').forEach(function(i) {
+      i.closest('.option').classList.remove('selected');
+    });
+    this.classList.add('selected');
+  });
+});
+</script>
+</body>
+</html>

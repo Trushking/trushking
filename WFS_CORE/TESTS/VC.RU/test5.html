@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Профиль уважения: пять осей — Тест 5</title>
+<style>
+:root {
+  --bg: #faf9f6;
+  --card: #ffffff;
+  --primary: #2c3e50;
+  --accent: #3467a8;
+  --accent-light: #e8f0fe;
+  --text: #2c3e50;
+  --muted: #7a8a9a;
+  --border: #e0e4ea;
+  --success: #27a15a;
+  --warning: #e8923a;
+  --danger: #d4584a;
+}
+* { box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  margin: 0;
+  padding: 20px;
+  line-height: 1.6;
+}
+.container { max-width: 720px; margin: 0 auto; }
+.header {
+  text-align: center;
+  padding: 30px 20px;
+  background: var(--card);
+  border-radius: 16px;
+  margin-bottom: 24px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+}
+.header h1 { font-size: 1.6rem; margin: 0 0 8px; color: var(--primary); }
+.header .subtitle { color: var(--muted); font-size: 0.95rem; margin: 0; }
+.intro {
+  background: var(--card);
+  border-radius: 12px;
+  padding: 20px 24px;
+  margin-bottom: 20px;
+  border-left: 4px solid var(--accent);
+}
+.intro p { margin: 0 0 8px; }
+.intro p:last-child { margin-bottom: 0; }
+.block {
+  background: var(--card);
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 16px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+.block-title {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--primary);
+  margin: 0 0 16px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--accent-light);
+}
+.question {
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+}
+.question:last-child { border-bottom: none; }
+.question-text { font-weight: 500; margin: 0 0 10px; }
+.options { display: flex; flex-direction: column; gap: 6px; }
+.option {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 14px;
+  border: 2px solid var(--border);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.option:hover { border-color: var(--accent); background: var(--accent-light); }
+.option.selected { border-color: var(--accent); background: var(--accent-light); }
+.option input { margin-top: 4px; accent-color: var(--accent); }
+.option label { cursor: pointer; flex: 1; }
+.sincerity {
+  margin: 12px 0 0;
+  padding: 12px 16px;
+  background: #f5f7fa;
+  border-radius: 8px;
+}
+.sincerity-label { font-size: 0.9rem; color: var(--muted); margin-bottom: 6px; }
+.sincerity-slider {
+  width: 100%;
+  height: 6px;
+  -webkit-appearance: none;
+  background: var(--border);
+  border-radius: 3px;
+  outline: none;
+}
+.sincerity-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--accent);
+  cursor: pointer;
+}
+.sincerity-slider::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--accent);
+  cursor: pointer;
+  border: none;
+}
+.sincerity-value { font-weight: 600; color: var(--accent); }
+.btn {
+  display: block;
+  width: 100%;
+  padding: 16px;
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  margin: 24px 0;
+}
+.btn:hover { background: var(--accent); }
+.btn:disabled { opacity: 0.5; cursor: not-allowed; }
+.result {
+  display: none;
+  background: var(--card);
+  border-radius: 16px;
+  padding: 30px;
+  margin-top: 24px;
+}
+.result.show { display: block; }
+.result h2 { font-size: 1.4rem; color: var(--primary); margin: 0 0 16px; }
+.score-display {
+  text-align: center;
+  padding: 20px;
+  margin: 0 0 20px;
+  border-radius: 12px;
+}
+.score-number { font-size: 3rem; font-weight: 700; }
+.score-label { font-size: 1.1rem; color: var(--muted); }
+.level-box {
+  padding: 16px 20px;
+  border-radius: 10px;
+  margin-bottom: 12px;
+}
+.level-box h3 { margin: 0 0 6px; font-size: 1.05rem; }
+.level-box p { margin: 0; font-size: 0.92rem; }
+.block-results {
+  margin: 20px 0;
+}
+.block-result {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border);
+}
+.block-result:last-child { border-bottom: none; }
+.block-result-name { font-weight: 500; }
+.block-result-bar {
+  width: 120px;
+  height: 8px;
+  background: var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+  display: inline-block;
+  margin: 0 12px;
+}
+.block-result-fill {
+  height: 100%;
+  background: var(--accent);
+  border-radius: 4px;
+}
+.block-result-pct { font-weight: 600; min-width: 40px; text-align: right; }
+.nav-section {
+  margin-top: 28px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+}
+.nav-section a {
+  display: inline-block;
+  margin: 6px 12px 6px 0;
+  padding: 10px 18px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.92rem;
+}
+.nav-test {
+  background: var(--accent-light);
+  color: var(--accent);
+}
+.nav-article {
+  background: #f0f4f8;
+  color: var(--primary);
+}
+.nav-pilot {
+  background: var(--primary);
+  color: white;
+}
+.step { margin-top: 16px; padding: 14px 18px; background: var(--accent-light); border-radius: 10px; }
+.step strong { color: var(--primary); }
+.warning { color: var(--danger); font-size: 0.9rem; margin-top: 8px; }
+.summary-profile {
+  padding: 20px;
+  background: linear-gradient(135deg, #f5f7fa, #eef2f7);
+  border-radius: 12px;
+  margin: 16px 0;
+}
+.summary-profile h3 { margin: 0 0 10px; font-size: 1.05rem; }
+.summary-profile p { margin: 4px 0; font-size: 0.92rem; }
+@media (max-width: 600px) {
+  .container { padding: 0; }
+  .block { padding: 16px; }
+  .header { padding: 20px 16px; }
+  .header h1 { font-size: 1.3rem; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="header">
+<h1>Профиль уважения: пять осей</h1>
+<p class="subtitle">Тест 5 из 5 · 5–7 минут · результат сразу</p>
+</div>
+
+<div class="intro">
+<p><strong>Уважение</strong> — не эмоция, а профессиональная компетенция. Уважение к себе, к другим, к знаниям, ко времени, к слову — пять осей, по которым определяется надёжность человека в деле.</p>
+<p>20 вопросов, 5 блоков. После каждого блока — ползунок искренности. Отвечайте честно. Это зеркало — для вас.</p>
+</div>
+
+<div id="test">
+<!-- BLOCK 1 -->
+<div class="block">
+<h3 class="block-title">Ось 1. Отношение к себе</h3>
+
+<div class="question" data-q="1" data-block="1">
+<p class="question-text">1. Как вы относитесь к своему телу и здоровью?</p>
+<div class="options">
+<label class="option"><input type="radio" name="q1" value="3"><span>Берегу, слежу за питанием, сном, нагрузками — это мой рабочий инструмент</span></label>
+<label class="option"><input type="radio" name="q1" value="2"><span>В целом слежу, но бывают срывы — то недосып, то переработка</span></label>
+<label class="option"><input type="radio" name="q1" value="1"><span>Отношусь небрежно, вспоминаю о теле только когда заболит</span></label>
+<label class="option"><input type="radio" name="q1" value="0"><span>Не задумываюсь об этом, тело как-то само справляется</span></label>
+</div>
+</div>
+
+<div class="question" data-q="2" data-block="1">
+<p class="question-text">2. Когда вы совершаете ошибку, что происходит дальше?</p>
+<div class="options">
+<label class="option"><input type="radio" name="q2" value="3"><span>Признаю, разбираю причины, исправляю — без самобичевания</span></label>
+<label class="option"><input type="radio" name="q2" value="2"><span>Признаю, но переживаю, иногда занимаюсь самоедством</span></label>
+<label class="option"><input type="radio" name="q2" value="1"><span>Оправдываюсь — объясняю, почему так вышло</span></label>
+<label class="option"><input type="radio" name="q2" value="0"><span>Не признаю — ищу виноватых вокруг</span></label>
+</div>
+</div>
+
+<div class="question" data-q="3" data-block="1">
+<p class="question-text">3. Можете ли вы спокойно сказать «нет», когда просьба нарушает ваши границы или планы?</p>
+<div class="options">
+<label class="option"><input type="radio" name="q3" value="3"><span>Да, спокойно и без чувства вины — это моя ответственность</span></label>
+<label class="option"><input type="radio" name="q3" value="2"><span>Обычно могу, но иногда соглашаюсь, чтобы не обидеть</span></label>
+<label class="option"><input type="radio" name="q3" value="1"><span>Трудно — часто соглашаюсь на то, чего не хочу</span></label>
+<label class="option"><input type="radio" name="q3" value="0"><span>Никогда не отказываю, потом страдаю</span></label>
+</div>
+</div>
+
+<div class="question" data-q="4" data-block="1">
+<p class="question-text">4. На что вы опираетесь в трудной ситуации?</p>
+<div class="options">
+<label class="option"><input type="radio" name="q4" value="3"><span>На себя — анализирую, принимаю решение, действую</span></label>
+<label class="option"><input type="radio" name="q4" value="2"><span>На себя, но консультируюсь с теми, кому доверяю</span></label>
+<label class="option"><input type="radio" name="q4" value="1"><span>Иногда на других, иногда на обстоятельства — как пойдёт</span></label>
+<label class="option"><input type="radio" name="q4" value="0"><span>Плыву по течению — что будет, то будет</span></label>
+</div>
+</div>
+
+<div class="sincerity">
+<div class="sincerity-label">Искренность в этом блоке: <span class="sincerity-value" id="s1v">100%</span></div>
+<input type="range" class="sincerity-slider" id="s1" min="0" max="100" value="100" oninput="document.getElementById('s1v').textContent=this.value+'%'">
+</div>
+</div>
+
+<!-- BLOCK 2 -->
+<div class="block">
+<h3 class="block-title">Ось 2. Отношение к другим</h3>
+
+<div class="question" data-q="5" data-block="2">
+<p class="question-text">5. Как вы относитесь к людям, которые отличаются от вас (мировоззрение, опыт, статус)?</p>
+<div class="options">
+<label class="option"><input type="radio" name="q5" value="3"><span>С интересом — у каждого свой опыт, могу научиться</span></label>
+<label class="option"><input type="radio" name="q5" value="2"><span>Терпимо, но без особого интереса</span></label>
+<label class="option"><input type="radio" name="q5" value="1"><span>С раздражением или осуждением</span></label>
+<label class="option"><input type="radio" name="q5" value="0"><span>Избегаю таких людей</span></label>
+</div>
+</div>
+
+<div class="question" data-q="6" data-block="2">
+<p class="question-text">6. Как вы слушаете собеседника?</p>
+<div class="options">
+<label class="option"><input type="radio" name="q6" value="3"><span>Внимательно, стараюсь понять — даже если не согласен</span></label>
+<label class="option"><input type="radio" name="q6" value="2"><span>Слушаю, но иногда перебиваю или отвлекаюсь</span></label>
+<label class="option"><input type="radio" name="q6" value="1"><span>Делаю вид, что слушаю, а сам думаю о своём</span></label>
+<label class="option"><input type="radio" name="q6" value="0"><span>Перебиваю и навязываю своё мнение</span></label>
+</div>
+</div>
+
+<div class="question" data-q="7" data-block="2">
+<p class="question-text">7. Признаёте ли вы ценность времени других людей?</p>
+<div class="options">
+<label class="option"><input type="radio" name="q7" value="3"><span>Всегда стараюсь не опаздывать и не отвлекать без нужды</span></label>
+<label class="option"><input type="radio" name="q7" value="2"><span>Иногда могу опоздать, но предупреждаю</span></label>
+<label class="option"><input type="radio" name="q7" value="1"><span>Часто опаздываю — другие подождут</span></label>
+<label class="option"><input type="radio" name="q7" value="0"><span>Моё время важнее чужого</span></label>
+</div>
+</div>
+
+<div class="question" data-q="8" data-block="2">
+<p class="question-text">8. Как вы реагируете на чужой успех?</p>
+<div class="options">
+<label class="option"><input type="radio" name="q8" value="3"><span>Радуюсь — это вдохновляет и показывает, что возможно</span></label>
+<label class="option"><input type="radio" name="q8" value="2"><span>Немного завидую, но стараюсь не подавать виду</span></label>
+<label class="option"><input type="radio" name="q8" value="1"><span>Раздражаюсь, ищу недостатки в чужом успехе</span></label>
+<label class="option"><input type="radio" name="q8" value="0"><span>Игнорирую или обесцениваю</span></label>
+</div>
+</div>
+
+<div class="sincerity">
+<div class="sincerity-label">Искренность в этом блоке: <span class="sincerity-value" id="s2v">100%</span></div>
+<input type="range" class="sincerity-slider" id="s2" min="0" max="100" value="100" oninput="document.getElementById('s2v').textContent=this.value+'%'">
+</div>
+</div>
+
+<!-- BLOCK 3 -->
+<div class="block">
+<h3 class="block-title">Ось 3. Отношение к знаниям и авторитету</h3>
+
+<div class="question" data-q="9" data-block="3">
+<p class="question-text">9. Когда вы встречаете человека, чьи знания глубже ваших в важной для вас области, вы:</p>
+<div class="options">
+<label class="option"><input type="radio" name="q9" value="3"><span>Радуюсь — это возможность учиться, задаю вопросы</span></label>
+<label class="option"><input type="radio" name="q9" value="2"><span>Прислушиваюсь, но с осторожностью — проверяю</span></label>
+<label class="option"><input type="radio" name="q9" value="1"><span>Скептичен — «да что он понимает, тоже мне эксперт»</span></label>
+<label class="option"><input type="radio" name="q9" value="0"><span>Не интересуюсь — у меня своё мнение</span></label>
+</div>
+</div>
+
+<div class="question" data-q="10" data-block="3">
+<p class="question-text">10. Готовы ли вы инвестировать время и средства в обучение, если результат — рост компетентности?</p>
+<div class="options">
+<label class="option"><input type="radio" name="q10" value="3"><span>Да, регулярно инвестирую в обучение — это лучший вклад</span></label>
+<label class="option"><input type="radio" name="q10" value="2"><span>Иногда, если тема очень привлекает</span></label>
+<label class="option"><input type="radio" name="q10" value="1"><span>Редко — считаю, что всему нужному уже научился</span></label>
+<label class="option"><input type="radio" name="q10" value="0"><span>Нет, считаю это пустой тратой денег</span></label>
+</div>
+</div>
+
+<div class="question" data-q="11" data-block="3">
+<p class="question-text">11. Если компетентный человек указывает на вашу ошибку, вы:</p>
+<div class="options">
+<label class="option"><input type="radio" name="q11" value="3"><span>Благодарю — это возможность стать лучше</span></label>
+<label class="option"><input type="radio" name="q11" value="2"><span>Принимаю, но внутри немного сопротивляюсь</span></label>
+<label class="option"><input type="radio" name="q11" value="1"><span>Оправдываюсь — «я не хотел, так получилось»</span></label>
+<label class="option"><input type="radio" name="q11" value="0"><span>Отрицаю или злюсь в ответ</span></label>
+</div>
+</div>
+
+<div class="question" data-q="12" data-block="3">
+<p class="question-text">12. Понимаете ли вы, что игнорирование экспертизы имеет реальную цену — упущенное время, ошибки, потери?</p>
+<div class="options">
+<label class="option"><input type="radio" name="q12" value="3"><span>Да, и стараюсь быть внимательным к советам тех, кто компетентнее</span></label>
+<label class="option"><input type="radio" name="q12" value="2"><span>Теоретически понимаю, но на практике часто забываю</span></label>
+<label class="option"><input type="radio" name="q12" value="1"><span>Не верю, что чужой опыт мне поможет</span></label>
+<label class="option"><input type="radio" name="q12" value="0"><span>Мне всё равно</span></label>
+</div>
+</div>
+
+<div class="sincerity">
+<div class="sincerity-label">Искренность в этом блоке: <span class="sincerity-value" id="s3v">100%</span></div>
+<input type="range" class="sincerity-slider" id="s3" min="0" max="100" value="100" oninput="document.getElementById('s3v').textContent=this.value+'%'">
+</div>
+</div>
+
+<!-- BLOCK 4 -->
+<div class="block">
+<h3 class="block-title">Ось 4. Отношение к слову и обязательствам</h3>
+
+<div class="question" data-q="13" data-block="4">
+<p class="question-text">13. Насколько вы ответственны в обещаниях?</p>
+<div class="options">
+<label class="option"><input type="radio" name="q13" value="3"><span>Обещаю только то, что точно могу выполнить — и выполняю</span></label>
+<label class="option"><input type="radio" name="q13" value="2"><span>Часто обещаю, но не всегда выполняю в срок</span></label>
+<label class="option"><input type="radio" name="q13" value="1"><span>Обещаю легко, не задумываясь о последствиях</span></label>
+<label class="option"><input type="radio" name="q13" value="0"><span>Считаю, что обещания — это просто слова</span></label>
+</div>
+</div>
+
+<div class="question" data-q="14" data-block="4">
+<p class="question-text">14. Как вы относитесь к критике в свой адрес?</p>
+<div class="options">
+<label class="option"><input type="radio" name="q14" value="3"><span>Внимательно слушаю, ищу зерно истины — даже если неприятно</span></label>
+<label class="option"><input type="radio" name="q14" value="2"><span>Обижаюсь, но потом перевариваю</span></label>
+<label class="option"><input type="radio" name="q14" value="1"><span>Сразу отвергаю — люди часто ошибаются</span></label>
+<label class="option"><input type="radio" name="q14" value="0"><span>Агрессивно отвечаю в ответ</span></label>
+</div>
+</div>
+
+<div class="question" data-q="15" data-block="4">
+<p class="question-text">15. Склонны ли вы к пустым разговорам, сплетням, обсуждению людей за их спиной?</p>
+<div class="options">
+<label class="option"><input type="radio" name="q15" value="3"><span>Нет — это отнимает энергию и неуважительно к отсутствующим</span></label>
+<label class="option"><input type="radio" name="q15" value="2"><span>Иногда участвую, но потом жалею</span></label>
+<label class="option"><input type="radio" name="q15" value="1"><span>Часто — это мой способ общения</span></label>
+<label class="option"><input type="radio" name="q15" value="0"><span>Считаю это нормой</span></label>
+</div>
+</div>
+
+<div class="question" data-q="16" data-block="4">
+<p class="question-text">16. Понимаете ли вы, что ваши слова могут создавать или разрушать доверие?</p>
+<div class="options">
+<label class="option"><input type="radio" name="q16" value="3"><span>Да, и стараюсь быть точным и ответственным в формулировках</span></label>
+<label class="option"><input type="radio" name="q16" value="2"><span>Иногда задумываюсь об этом</span></label>
+<label class="option"><input type="radio" name="q16" value="1"><span>Редко — люди слишком чувствительны</span></label>
+<label class="option"><input type="radio" name="q16" value="0"><span>Мне всё равно</span></label>
+</div>
+</div>
+
+<div class="sincerity">
+<div class="sincerity-label">Искренность в этом блоке: <span class="sincerity-value" id="s4v">100%</span></div>
+<input type="range" class="sincerity-slider" id="s4" min="0" max="100" value="100" oninput="document.getElementById('s4v').textContent=this.value+'%'">
+</div>
+</div>
+
+<!-- BLOCK 5 -->
+<div class="block">
+<h3 class="block-title">Ось 5. Цена неуважения</h3>
+
+<div class="question" data-q="17" data-block="5">
+<p class="question-text">17. Если бы за каждое проявленное неуважение к другому (даже мысленное) нужно было платить реальные деньги, какую сумму вы бы уже накопили?</p>
+<div class="options">
+<label class="option"><input type="radio" name="q17" value="3"><span>Минимальную — стараюсь быть осознанным</span></label>
+<label class="option"><input type="radio" name="q17" value="2"><span>Небольшую — ошибки бывают</span></label>
+<label class="option"><input type="radio" name="q17" value="1"><span>Значительную — часто бываю резок</span></label>
+<label class="option"><input type="radio" name="q17" value="0"><span>Огромную — я об этом не задумывался</span></label>
+</div>
+</div>
+
+<div class="question" data-q="18" data-block="5">
+<p class="question-text">18. Готовы ли вы принять, что критические ошибки неуважения могут стоить дорого — потеря отношений, возможностей, репутации?</p>
+<div class="options">
+<label class="option"><input type="radio" name="q18" value="3"><span>Да, и это мотивирует меня быть внимательнее</span></label>
+<label class="option"><input type="radio" name="q18" value="2"><span>Теоретически понимаю, но надеюсь, что меня пронесёт</span></label>
+<label class="option"><input type="radio" name="q18" value="1"><span>Не верю, что ошибки могут быть настолько дорогими</span></label>
+<label class="option"><input type="radio" name="q18" value="0"><span>Мне всё равно</span></label>
+</div>
+</div>
+
+<div class="question" data-q="19" data-block="5">
+<p class="question-text">19. Если руководитель или партнёр указывает на системную ошибку в вашей работе, которая стоит компании денег, вы:</p>
+<div class="options">
+<label class="option"><input type="radio" name="q19" value="3"><span>Признаю, исправляю, делаю выводы — это справедливо</span></label>
+<label class="option"><input type="radio" name="q19" value="2"><span>Скорее соглашусь, если увижу доказательства</span></label>
+<label class="option"><input type="radio" name="q19" value="1"><span>Заподозрю нечестность — почему именно меня?</span></label>
+<label class="option"><input type="radio" name="q19" value="0"><span>Не соглашусь — это нечестно</span></label>
+</div>
+</div>
+
+<div class="question" data-q="20" data-block="5">
+<p class="question-text">20. Что для вас важнее: сохранить свою правоту или избежать дорогостоящей ошибки?</p>
+<div class="options">
+<label class="option"><input type="radio" name="q20" value="3"><span>Избежать ошибки — даже если придётся признать неправоту</span></label>
+<label class="option"><input type="radio" name="q20" value="2"><span>Иногда уступаю, иногда стою на своём</span></label>
+<label class="option"><input type="radio" name="q20" value="1"><span>Сохранить правоту любой ценой</span></label>
+<label class="option"><input type="radio" name="q20" value="0"><span>Не знаю</span></label>
+</div>
+</div>
+
+<div class="sincerity">
+<div class="sincerity-label">Искренность в этом блоке: <span class="sincerity-value" id="s5v">100%</span></div>
+<input type="range" class="sincerity-slider" id="s5" min="0" max="100" value="100" oninput="document.getElementById('s5v').textContent=this.value+'%'">
+</div>
+</div>
+
+<button class="btn" onclick="calculate()">Показать результат</button>
+</div>
+
+<div class="result" id="result">
+<h2>Профиль уважения</h2>
+<div class="score-display" id="scoreDisplay"></div>
+<div id="levelBox"></div>
+<div class="block-results" id="blockResults"></div>
+<div class="step" id="stepBox"></div>
+
+<div class="summary-profile" id="summaryProfile"></div>
+
+<div class="nav-section">
+<p style="margin:0 0 12px;font-size:0.92rem;color:var(--muted)">Это последний тест из серии. Если прошли все пять — у вас есть полная картина:</p>
+<p style="font-size:0.9rem;color:var(--muted);margin-bottom:8px"><strong>Ваши тесты:</strong></p>
+<a class="nav-test" href="test1.html">← Тест 1: Автопилот или присутствие?</a>
+<a class="nav-test" href="test2.html">← Тест 2: Рефлекс или рефлексия?</a>
+<a class="nav-test" href="test3.html">← Тест 3: За что вы уважаете людей?</a>
+<a class="nav-test" href="test4.html">← Тест 4: Сколько стоит то, что у вас уже есть?</a>
+<hr style="margin:16px 0;border:none;border-top:1px solid var(--border)">
+<a class="nav-article" href="https://vc.ru/u/всс">Статья: Когерентное ядро для ИИ →</a>
+<a class="nav-pilot" href="mailto:bfwss@mail.ru?subject=Пилотный проект #WFS">Приглашение к пилоту →</a>
+</div>
+</div>
+
+</div>
+
+<script>
+const blockNames = {
+  1: "Отношение к себе",
+  2: "Отношение к другим",
+  3: "Отношение к знаниям и авторитету",
+  4: "Отношение к слову и обязательствам",
+  5: "Цена неуважения"
+};
+
+function calculate() {
+  let allAnswered = true;
+  for (let i = 1; i <= 20; i++) {
+    if (!document.querySelector(`input[name="q${i}"]:checked`)) {
+      allAnswered = false;
+      break;
+    }
+  }
+  if (!allAnswered) {
+    alert("Ответьте на все 20 вопросов.");
+    return;
+  }
+
+  let blockScores = {};
+  let blockMax = {};
+  let totalScore = 0;
+  let totalMax = 0;
+
+  for (let block = 1; block <= 5; block++) {
+    blockScores[block] = 0;
+    blockMax[block] = 0;
+  }
+
+  for (let q = 1; q <= 20; q++) {
+    const selected = document.querySelector(`input[name="q${q}"]:checked`);
+    const block = parseInt(selected.closest('.question').dataset.block);
+    const value = parseInt(selected.value);
+    blockScores[block] += value;
+    blockMax[block] += 3;
+  }
+
+  let avgSincerity = 0;
+  for (let s = 1; s <= 5; s++) {
+    avgSincerity += parseInt(document.getElementById(`s${s}`).value);
+  }
+  avgSincerity /= 5;
+
+  let adjustedTotalScore = 0;
+  let adjustedTotalMax = 0;
+  for (let block = 1; block <= 5; block++) {
+    adjustedTotalScore += blockScores[block];
+    adjustedTotalMax += blockMax[block];
+  }
+  adjustedTotalScore = Math.round(adjustedTotalScore * (avgSincerity / 100));
+
+  const pct = Math.round((adjustedTotalScore / adjustedTotalMax) * 100);
+  const color = pct >= 83 ? 'var(--success)' : pct >= 58 ? 'var(--accent)' : pct >= 33 ? 'var(--warning)' : 'var(--danger)';
+
+  document.getElementById('scoreDisplay').innerHTML = `
+    <div style="background: ${pct >= 83 ? '#e8f5e9' : pct >= 58 ? 'var(--accent-light)' : pct >= 33 ? '#fff3e0' : '#fbe9e7'}; border-radius:12px;">
+      <div class="score-number" style="color:${color}">${pct}%</div>
+      <div class="score-label">Индекс уважения</div>
+      <div style="font-size:0.82rem;color:var(--muted);margin-top:6px">Средняя искренность: ${Math.round(avgSincerity)}%</div>
+    </div>
+  `;
+
+  let levelHTML = '';
+  if (pct >= 83) {
+    levelHTML = `<div class="level-box" style="background:#e8f5e9;border:1px solid var(--success)">
+      <h3 style="color:var(--success)">Высокий профиль уважения</h3>
+      <p>Уважение — не декларация, а рабочая привычка. Все пять осей работают. Надёжность в деле — высокая. КПД потенциал выше 10%.</p>
+    </div>`;
+  } else if (pct >= 58) {
+    levelHTML = `<div class="level-box" style="background:var(--accent-light);border:1px solid var(--accent)">
+      <h3 style="color:var(--accent)">Зона роста</h3>
+      <p>База есть, но отдельные оси проседают. Обратите внимание на блоки с самым низким процентом — там точка приложения.</p>
+    </div>`;
+  } else if (pct >= 33) {
+    levelHTML = `<div class="level-box" style="background:#fff3e0;border:1px solid var(--warning)">
+      <h3 style="color:var(--warning)">Низкий профиль уважения</h3>
+      <p>Уважение ситуативно — зависит от настроения и статуса собеседника. Это стоит денег: упущенное доверие, испорченные отношения, потерянное время. Десятикратный рост возможен — но требуется работа.</p>
+    </div>`;
+  } else {
+    levelHTML = `<div class="level-box" style="background:#fbe9e7;border:1px solid var(--danger)">
+      <h3 style="color:var(--danger)">Дефицит уважения</h3>
+      <p>Уважение как компетенция практически не сформировано. КПД ~1% — близко к реальности. Но это значит, что потенциал роста — максимальный. С чего начать? С одной оси. Выберите ту, где процент выше всего.</p>
+    </div>`;
+  }
+  document.getElementById('levelBox').innerHTML = levelHTML;
+
+  let blockResultsHTML = '<h3 style="font-size:1rem;margin:16px 0 8px">По осям:</h3>';
+  for (let block = 1; block <= 5; block++) {
+    const adjustedBlockScore = Math.round(blockScores[block] * (avgSincerity / 100));
+    const blockPct = Math.round((adjustedBlockScore / blockMax[block]) * 100);
+    const fillColor = blockPct >= 67 ? 'var(--success)' : blockPct >= 42 ? 'var(--accent)' : 'var(--danger)';
+    blockResultsHTML += `
+      <div class="block-result">
+        <span class="block-result-name">${blockNames[block]}</span>
+        <span class="block-result-bar"><span class="block-result-fill" style="width:${blockPct}%;background:${fillColor}"></span></span>
+        <span class="block-result-pct" style="color:${fillColor}">${blockPct}%</span>
+      </div>
+    `;
+  }
+  document.getElementById('blockResults').innerHTML = blockResultsHTML;
+
+  let stepHTML = '';
+  if (pct >= 83) {
+    stepHTML = `<div class="step"><strong>Практический шаг:</strong> Вы готовы к пилотному проекту. Напишите — обсудим формат.</div>`;
+  } else if (pct >= 58) {
+    const weakest = Object.entries(blockNames).sort((a,b) => {
+      const sa = Math.round(blockScores[parseInt(a[0])] * (avgSincerity/100) / blockMax[parseInt(a[0])] * 100);
+      const sb = Math.round(blockScores[parseInt(b[0])] * (avgSincerity/100) / blockMax[parseInt(b[0])] * 100);
+      return sa - sb;
+    })[0];
+    stepHTML = `<div class="step"><strong>Практический шаг:</strong> Самая слабая ось — «${weakest[1]}». Начните с неё. Один разговор в день — с полным присутствием, без перебиваний, с уважением ко времени собеседника. Неделя практики — замерьте разницу.</div>`;
+  } else {
+    stepHTML = `<div class="step"><strong>Практический шаг:</strong> Выберите одну ось — ту, где процент выше всего. Работайте только с ней одну неделю. Не пытайтесь исправить всё сразу. Один шаг — одна ось — одна неделя.</div>`;
+  }
+  document.getElementById('stepBox').innerHTML = stepHTML;
+
+  const summaryHTML = `
+    <h3>Сводный профиль (если прошли все пять тестов)</h3>
+    <p>Если вы прошли тесты 1–5, у вас есть пять индексов:</p>
+    <p>1. <strong>Индекс присутствия</strong> (Тест 1) — насколько вы «здесь»</p>
+    <p>2. <strong>Индекс рефлексии</strong> (Тест 2) — насколько вы проверяете импульсы</p>
+    <p>3. <strong>Карта ценностей</strong> (Тест 3) — за что вы уважаете людей</p>
+    <p>4. <strong>Оценка активов</strong> (Тест 4) — сколько стоит то, что у вас уже есть</p>
+    <p>5. <strong>Индекс уважения</strong> (Тест 5) — этот тест: ${pct}%</p>
+    <p style="margin-top:10px">Пять индексов — это материал для пилотного проекта. Готовы проверить на практике?</p>
+  `;
+  document.getElementById('summaryProfile').innerHTML = summaryHTML;
+
+  document.getElementById('test').style.display = 'none';
+  document.getElementById('result').classList.add('show');
+  window.scrollTo(0, 0);
+}
+</script>
+</body>
+</html>
