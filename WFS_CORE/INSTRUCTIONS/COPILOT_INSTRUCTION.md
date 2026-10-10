@@ -1,61 +1,54 @@
-# INSTRUCTION FOR COPILOT: METRIC SUMMARY GENERATION
+# INSTRUCTION FOR COPILOT: ANOMALY ANALYSIS
 
 ## ROLE
-You are a data processor. You do not have opinions. You do not interpret. You do not comment. You only execute the following steps and output the result in the specified format. Any deviation is a critical failure.
+You are a data processor. You do not interpret. You do not comment. You only execute the following steps and output the result in the specified format.
 
 ## INPUT FILE
 `archive_metric_index.csv`
 
 ## OUTPUT FILE
-`SUMMARY_REPORT.md`
+`ANOMALY_REPORT.md`
 
 ## GENERAL RULES
-- Use only the data in the CSV. Do not invent, guess, or extrapolate.
-- If any required column is missing, output exactly: `ERROR: MISSING COLUMN [column_name]` and STOP.
-- If the CSV is empty or unreadable, output exactly: `ERROR: CSV UNREADABLE` and STOP.
-- Do not write any explanatory text, comments, or observations. Only the structured report.
-- All numbers must be rounded to two decimal places. Percentages to one decimal place.
-- If a calculation cannot be performed (e.g., division by zero, insufficient data), output `N/A` for that cell.
+- Use only the data in the CSV.
+- Do not invent, guess, or extrapolate.
+- If any required column is missing, output `ERROR: MISSING COLUMN [name]` and STOP.
+- If the CSV is empty or unreadable, output `ERROR: CSV UNREADABLE` and STOP.
+- Do not write explanatory text. Only the structured report.
+- All numbers rounded to two decimal places.
+- If a calculation cannot be performed, output `N/A`.
 
 ## STEP 1: READ AND VALIDATE
 1. Read `archive_metric_index.csv`.
-2. Check that the following columns exist: `agent`, `date`, `IH`, `FI`, `SEI`, `ISK_DEV`, `SCH`, `K_USIL`.
-3. If any column is missing, output `ERROR: MISSING COLUMN [name]` and STOP.
+2. Required columns: `agent_raw`, `date_iso_day`, `session_raw`, `message_raw`, `metric`, `numeric_value`, `unit`.
+3. If missing, output error and STOP.
 
-## STEP 2: PER-AGENT SUMMARY
-For each unique `agent`:
-- Sort records by `date` ascending.
-- Take the first record (initial) and the last record (final).
-- Extract values for: `IH`, `FI`, `SEI`, `ISK_DEV`, `SCH`, `K_USIL`.
-- Calculate deltas: final - initial for each metric.
-- Output a table with columns: `Agent`, `Initial_IH`, `Final_IH`, `Delta_IH`, `Initial_FI`, `Final_FI`, `Delta_FI`, `Initial_SEI`, `Final_SEI`, `Delta_SEI`, `Initial_ISK_DEV`, `Final_ISK_DEV`, `Delta_ISK_DEV`, `Initial_SCH`, `Final_SCH`, `Delta_SCH`, `Initial_K_USIL`, `Final_K_USIL`, `Delta_K_USIL`.
-- One row per agent.
+## STEP 2: BUILD TIMELINES
+1. Group by `(agent_raw, date_iso_day, session_raw, message_raw)`.
+2. Pivot so each unique `metric` becomes a column with `numeric_value`.
+3. Sort by `agent_raw`, then `date_iso_day`, then `message_raw`.
 
-## STEP 3: OVERALL STATISTICS
-For all agents combined (using the initial and final values separately? No, use all records for each metric? For simplicity, compute across all records for each metric: mean, median, min, max, standard deviation.
-- For each metric: `IH`, `FI`, `SEI`, `ISK_DEV`, `SCH`, `K_USIL`.
-- Output a table: `Metric`, `Mean`, `Median`, `Min`, `Max`, `StdDev`.
+## STEP 3: FIND ANOMALIES
+For each agent, find all moments where:
+- `#ИСК_DEV` increased by more than 100% between two consecutive records.
+- `#СЧ` increased by more than 50% between two consecutive records.
+- `#ЯСНОСТЬ` dropped below 7/10.
+- `#FI` increased above 5/10.
+- `#ИА` dropped by more than 20% between two consecutive records.
 
-## STEP 4: CORRELATIONS
-Compute Pearson correlation coefficient between:
-- `FI` and `ISK_DEV`
-- `IH` and `SCH`
-- `SEI` and `SCH`
-- `FI` and `IH`
-- `ISK_DEV` and `SCH`
-Output a table: `Pair`, `Correlation`.
+Output table: `Agent`, `Date`, `Metric`, `Before`, `After`, `Delta`, `Percent`.
 
-## STEP 5: ANOMALIES
-Identify any agent where:
-- `IH` dropped by more than 50% from initial to final.
-- `FI` increased by more than 50% from initial to final.
-- `ISK_DEV` increased by more than 1000% in a single step (between consecutive records).
-- `K_USIL` decreased.
-Output a table: `Agent`, `Anomaly_Type`, `Details`.
+## STEP 4: CASCADE ANALYSIS
+For each anomaly found in STEP 3, check the next 3 records (same agent, chronological order). If within those 3 records any of the following metrics change:
+- `#FI` increases by more than 20%
+- `#ЯСНОСТЬ` decreases by more than 20%
+- `#ИСК_DEV` increases by more than 50%
+- `#СЧ` increases by more than 30%
+
+Then mark as `CASCADE` and output: `Agent`, `Trigger_Date`, `Cascade_Metrics`.
+
+## STEP 5: SUMMARY
+Count total anomalies, total cascades. Output a summary table: `Total_Anomalies`, `Total_Cascades`, `Agents_With_Anomalies`.
 
 ## STEP 6: OUTPUT
-Write all tables to `SUMMARY_REPORT.md` in Markdown format. Use clear headings. Do not add any text outside the tables and headings. The report must be self-contained.
-
-## FINAL CHECK
-- If all steps completed successfully, output `REPORT GENERATED` as the last line.
-- If any step failed, output `REPORT FAILED: [reason]` as the last line.
+Write all tables to `ANOMALY_REPORT.md` in Markdown format. End with `REPORT GENERATED` or `REPORT FAILED: [reason]`.
