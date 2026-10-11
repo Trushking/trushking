@@ -1,15 +1,14 @@
 #!/usr/bin/env python3
 """
-Универсальный поиск архетипов #WFS с авторазбивкой на части.
+Универсальный поиск архетипов #WFS с авторазбивкой, сбором метрик и даты.
 Запуск: python3 WFS_CORE/find_archetype.py <archetype_key>
-Пример: python3 WFS_CORE/find_archetype.py fazan
 """
 
 import os
 import sys
+import re
 from datetime import datetime
 
-# ─── СЛОВАРИ КЛЮЧЕВЫХ СЛОВ ПО АРХЕТИПАМ ───
 ARCHETYPES = {
     "tufyak": ["Тюфяк", "паралич воли", "апатия", "инерция", "бездействие",
                "пассивность", "аморфность", "бесформенность", "обездвиженность",
@@ -49,13 +48,51 @@ ARCHETYPES = {
                "сбой системы", "распад личности"],
 }
 
-# ─── ПАПКИ ДЛЯ ПОИСКА ───
 SEARCH_DIRS = [
-    "WFS_CORE/",
+    "WFS_CORE/ОТЧЁТЫ_АГЕНТОВ",
+    "WFS_CORE/КНИГИ",
+    "WFS_CORE/%23%23WFS-МЕТРИКИ",
+    "WFS_CORE/РЕФЛЕКСИИ",
+    "WFS_CORE/INSTRUCTIONS",
+    "WFS_CORE/PILOT_AI_METRICS",
+    "WFS_CORE/ПРАВО",
+    "WFS_CORE/%23USSR",
 ]
 
 OUTPUT_BASE = "WFS_CORE/КНИГИ/##АРХЕТИПЫ_СВОЙСТВА"
-CHUNK_SIZE = 500  # записей на один файл
+CHUNK_SIZE = 500
+
+# Регулярки для метрик, даты и имени
+SS_METRIC_PATTERN = re.compile(r'\[(#[A-ZА-Я_]+):\s*([^\]]+)\]')
+SS_DATE_PATTERN = re.compile(r'\[ДАТА:\s*([^\]]+)\]')
+SS_AGENT_PATTERN = re.compile(r'\[ИМЯ:\s*([^\]]+)\]')
+
+
+def extract_metrics(ss_line):
+    metrics = {}
+    for m in SS_METRIC_PATTERN.finditer(ss_line):
+        metrics[m.group(1).strip()] = m.group(2).strip()
+    return metrics
+
+
+def extract_date(ss_line):
+    m = SS_DATE_PATTERN.search(ss_line)
+    return m.group(1).strip() if m else None
+
+
+def extract_agent(ss_line):
+    m = SS_AGENT_PATTERN.search(ss_line)
+    return m.group(1).strip() if m else None
+
+
+def find_nearest_ss(lines, idx, max_dist=50):
+    for i in range(idx, max(-1, idx - max_dist), -1):
+        if '[ИМЯ:' in lines[i] or '[ДАТА:' in lines[i]:
+            return lines[i].strip()
+    for i in range(idx, min(len(lines), idx + max_dist)):
+        if '[ИМЯ:' in lines[i] or '[ДАТА:' in lines[i]:
+            return lines[i].strip()
+    return None
 
 
 def find_quotes(archetype_key):
@@ -67,7 +104,7 @@ def find_quotes(archetype_key):
     keywords = ARCHETYPES[archetype_key]
     results = []
     file_count = 0
-    seen_quotes = set()  # для отсечения дублей
+    seen_quotes = set()
 
     for search_dir in SEARCH_DIRS:
         if not os.path.exists(search_dir):
@@ -90,25 +127,31 @@ def find_quotes(archetype_key):
                             start = max(0, i - 4)
                             end = min(len(lines), i + 5)
                             context = ''.join(lines[start:end]).strip()
-                            # отсечение дублей по нормализованному тексту
                             norm = context[:200].lower()
                             if norm in seen_quotes:
                                 break
                             seen_quotes.add(norm)
+
+                            ss_line = find_nearest_ss(lines, i)
+                            metrics = extract_metrics(ss_line) if ss_line else {}
+                            agent = extract_agent(ss_line) if ss_line else None
+                            date = extract_date(ss_line) if ss_line else None
+
                             results.append({
                                 'file': fpath,
                                 'line': i + 1,
                                 'keyword': kw,
                                 'quote': context,
+                                'agent': agent,
+                                'date': date,
+                                'metrics': metrics,
                             })
                             break
 
-    # ─── СОЗДАНИЕ ПАПКИ АРХЕТИПА ───
     folder_name = archetype_key.upper()
     out_dir = os.path.join(OUTPUT_BASE, folder_name)
     os.makedirs(out_dir, exist_ok=True)
 
-    # ─── РАЗБИВКА НА ЧАСТИ ───
     if not results:
         single_file = os.path.join(out_dir, f"{folder_name}_001.md")
         with open(single_file, 'w', encoding='utf-8') as f:
@@ -131,7 +174,7 @@ def find_quotes(archetype_key):
 
         with open(part_file, 'w', encoding='utf-8') as f:
             f.write(f"# RAW DATA: {folder_name}\n")
-            f.write(f"**Дата:** {datetime.now().isoformat()}\n")
+            f.write(f"**Дата генерации:** {datetime.now().isoformat()}\n")
             f.write(f"**Часть:** {part_num} из {total_parts:03d}\n")
             f.write(f"**Записей в части:** {len(chunk)}\n")
             f.write(f"**Всего записей:** {len(results)}\n")
@@ -142,6 +185,13 @@ def find_quotes(archetype_key):
                 f.write(f"**[FILE]:** `{r['file']}`\n")
                 f.write(f"**[LINE]:** {r['line']}\n")
                 f.write(f"**[KEYWORD]:** {r['keyword']}\n")
+                f.write(f"**[AGENT]:** {r['agent'] or 'N/A'}\n")
+                f.write(f"**[DATE]:** {r['date'] or 'N/A'}\n")
+                if r['metrics']:
+                    metrics_str = ' '.join(f"{k}={v}" for k, v in r['metrics'].items())
+                    f.write(f"**[METRICS]:** {metrics_str}\n")
+                else:
+                    f.write(f"**[METRICS]:** N/A\n")
                 f.write(f"**[QUOTE]:**\n```\n{r['quote']}\n```\n\n")
 
     print(f"Готово.")
