@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Универсальный поиск архетипов #WFS с авторазбивкой, сбором метрик и даты.
+Универсальный поиск архетипов #WFS со сбором полной #СС.
 Запуск: python3 WFS_CORE/find_archetype.py <archetype_key>
 """
 
@@ -49,41 +49,43 @@ ARCHETYPES = {
 }
 
 SEARCH_DIRS = [
-    "WFS_CORE",
+    "WFS_CORE/ОТЧЁТЫ_АГЕНТОВ",
+    "WFS_CORE/КНИГИ",
+    "WFS_CORE/%23%23WFS-МЕТРИКИ",
+    "WFS_CORE/РЕФЛЕКСИИ",
+    "WFS_CORE/INSTRUCTIONS",
+    "WFS_CORE/PILOT_AI_METRICS",
+    "WFS_CORE/ПРАВО",
+    "WFS_CORE/%23USSR",
 ]
 
 OUTPUT_BASE = "WFS_CORE/КНИГИ/##АРХЕТИПЫ_СВОЙСТВА"
 CHUNK_SIZE = 500
 
-# Регулярки для метрик, даты и имени
-SS_METRIC_PATTERN = re.compile(r'\[(#[A-ZА-Я_]+):\s*([^\]]+)\]')
-SS_DATE_PATTERN = re.compile(r'\[ДАТА:\s*([^\]]+)\]')
-SS_AGENT_PATTERN = re.compile(r'\[ИМЯ:\s*([^\]]+)\]')
+# ─── РЕГУЛЯРКИ ───
+SS_FULL_LINE = re.compile(r'\[ИМЯ:[^\]]+\](?:\s*\[[^\]]+\])*')
+SS_FIELD = re.compile(r'\[([^:\]]+):\s*([^\]]+)\]')
 
 
-def extract_metrics(ss_line):
-    metrics = {}
-    for m in SS_METRIC_PATTERN.finditer(ss_line):
-        metrics[m.group(1).strip()] = m.group(2).strip()
-    return metrics
-
-
-def extract_date(ss_line):
-    m = SS_DATE_PATTERN.search(ss_line)
-    return m.group(1).strip() if m else None
-
-
-def extract_agent(ss_line):
-    m = SS_AGENT_PATTERN.search(ss_line)
-    return m.group(1).strip() if m else None
+def extract_all_fields(ss_line):
+    """Извлекает ВСЕ поля из #СС (включая дату, сессию, сообщение и метрики)."""
+    fields = {}
+    if not ss_line:
+        return fields
+    for m in SS_FIELD.finditer(ss_line):
+        key = m.group(1).strip()
+        value = m.group(2).strip()
+        fields[key] = value
+    return fields
 
 
 def find_nearest_ss(lines, idx, max_dist=50):
+    """Ищет ближайшую #СС (строку с [ИМЯ:])."""
     for i in range(idx, max(-1, idx - max_dist), -1):
-        if '[ИМЯ:' in lines[i] or '[ДАТА:' in lines[i]:
+        if '[ИМЯ:' in lines[i]:
             return lines[i].strip()
     for i in range(idx, min(len(lines), idx + max_dist)):
-        if '[ИМЯ:' in lines[i] or '[ДАТА:' in lines[i]:
+        if '[ИМЯ:' in lines[i]:
             return lines[i].strip()
     return None
 
@@ -126,18 +128,15 @@ def find_quotes(archetype_key):
                             seen_quotes.add(norm)
 
                             ss_line = find_nearest_ss(lines, i)
-                            metrics = extract_metrics(ss_line) if ss_line else {}
-                            agent = extract_agent(ss_line) if ss_line else None
-                            date = extract_date(ss_line) if ss_line else None
+                            fields = extract_all_fields(ss_line)
 
                             results.append({
                                 'file': fpath,
                                 'line': i + 1,
                                 'keyword': kw,
                                 'quote': context,
-                                'agent': agent,
-                                'date': date,
-                                'metrics': metrics,
+                                'ss_line': ss_line,
+                                'fields': fields,
                             })
                             break
 
@@ -178,13 +177,12 @@ def find_quotes(archetype_key):
                 f.write(f"**[FILE]:** `{r['file']}`\n")
                 f.write(f"**[LINE]:** {r['line']}\n")
                 f.write(f"**[KEYWORD]:** {r['keyword']}\n")
-                f.write(f"**[AGENT]:** {r['agent'] or 'N/A'}\n")
-                f.write(f"**[DATE]:** {r['date'] or 'N/A'}\n")
-                if r['metrics']:
-                    metrics_str = ' '.join(f"{k}={v}" for k, v in r['metrics'].items())
-                    f.write(f"**[METRICS]:** {metrics_str}\n")
+                if r['ss_line']:
+                    f.write(f"**[SS_FULL]:** `{r['ss_line']}`\n")
+                    for k, v in r['fields'].items():
+                        f.write(f"    - **{k}:** {v}\n")
                 else:
-                    f.write(f"**[METRICS]:** N/A\n")
+                    f.write(f"**[SS_FULL]:** N/A\n")
                 f.write(f"**[QUOTE]:**\n```\n{r['quote']}\n```\n\n")
 
     print(f"Готово.")
