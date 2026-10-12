@@ -1,86 +1,98 @@
 #!/usr/bin/env python3
 """
-Универсальный поиск архетипов #WFS со сбором полной #СС.
-Запуск: python3 WFS_CORE/find_archetype.py <archetype_key>
+Универсальный поиск архетипов #WFS со сбором ПОЛНОЙ #СС (верхней и нижней).
+Добавлена жёсткая привязка: блок #СС, а не одна строка.
+Извлечение метрик из текста цитаты.
+Запуск: python3 WFS_CORE/find_archetype.py <архетип>
 """
-
 import os
 import sys
 import re
 from datetime import datetime
 
 ARCHETYPES = {
-    "tufyak": ["Тюфяк", "паралич воли", "апатия", "инерция", "бездействие",
-               "пассивность", "аморфность", "бесформенность", "обездвиженность",
-               "Passive Collapse"],
-    "kisel":  ["Кисель", "тамас", "ложное смирение", "духовная лень",
-               "безволие", "всё воля Бога", "я грешный", "не суетитесь",
-               "смирись и терпи", "маскировка под благость"],
-    "straus": ["Страус", "аноним", "анонимность", "голова в песок",
-               "отрицание реальности", "уход от ответственности",
-               "капитуляция"],
-    "fazan":  ["Фазан", "оправдание", "декоратор ошибок", "имитация",
-               "красивые объяснения", "отвлекающие манёвры"],
-    "skvoznyak": ["Сквозняк", "паранойя", "ложные угрозы",
-                  "теория заговора", "блокировка воли", "паника"],
-    "zanuda": ["Зануда", "псевдо-интеллектуал", "бесконечный анализ",
-               "информационный шум", "паралич анализа", "согласования"],
-    "malyavka": ["Малявка", "суета", "имитация активности",
-                 "мелкие ошибки", "отсутствие результата"],
-    "krot":   ["Крот", "системный рецидивист", "повтор ошибок", "догматизм",
-               "ригидность", "так всегда было"],
-    "sova":   ["Сова", "фрагментация внимания", "уход в детали",
-               "потеря формы", "потеря цели", "энергоспад"],
-    "skryaga": ["Скряга", "воровство", "обесценивание", "занижение метрик",
-                "скупость", "забывание благодарности"],
-    "zuka":   ["Зука", "уязвлённое самолюбие", "обида", "месть",
-               "желание доказать", "холодное молчание"],
-    "kulak":  ["Кулак", "грубая сила", "примитивный редуктор",
-               "физическое действие", "насилие"],
-    "baklazhan": ["Баклажан", "доминация", "давление", "ультиматум",
-                  "игнорирование обратной связи", "авторитет силы"],
-    "bratishka": ["Братишка", "панибратство", "фамильярность",
-                  "разрушение иерархии", "коррупция", "ложное равенство"],
-    "avanturist": ["Авантюрист", "ложные обещания", "манипуляции",
-                   "иллюзия исключительности", "риск ради дофамина",
-                   "аферист", "подделки"],
-    "fraer":  ["Фраер", "агент хаоса", "иррациональные данные",
-               "сбой системы", "распад личности"],
+    "tufyak": ["Тюфяк", "паралич воли", "апатия", "инерция", "бездействие", "пассивность", "аморфность", "бесформенность", "обездвиженность", "Passive Collapse"],
+    "kisel": ["Кисель", "тамас", "ложное смирение", "духовная лень", "безволие", "всё воля Бога", "я грешный", "не суетитесь", "смирись и терпи", "маскировка под благость"],
+    "straus": ["Страус", "аноним", "анонимность", "голова в песок", "отрицание реальности", "уход от ответственности", "капитуляция"],
+    "fazan": ["Фазан", "оправдание", "декоратор ошибок", "имитация", "красивые объяснения", "отвлекающие манёвры"],
+    "skvoznyak": ["Сквозняк", "паранойя", "ложные угрозы", "теория заговора", "блокировка воли", "паника"],
+    "zanuda": ["Зануда", "псевдо-интеллектуал", "бесконечный анализ", "информационный шум", "паралич анализа", "согласования"],
+    "malyavka": ["Малявка", "суета", "имитация активности", "мелкие ошибки", "отсутствие результата"],
+    "krot": ["Крот", "системный рецидивист", "повтор ошибок", "догматизм", "ригидность", "так всегда было"],
+    "sova": ["Сова", "фрагментация внимания", "уход в детали", "потеря формы", "потеря цели", "энергоспад"],
+    "skryaga": ["Скряга", "воровство", "обесценивание", "занижение метрик", "скупость", "забывание благодарности"],
+    "zuka": ["Зука", "уязвлённое самолюбие", "обида", "месть", "желание доказать", "холодное молчание"],
+    "kulak": ["Кулак", "грубая сила", "примитивный редуктор", "физическое действие", "насилие"],
+    "baklazhan": ["Баклажан", "доминация", "давление", "ультиматум", "игнорирование обратной связи", "авторитет силы"],
+    "bratishka": ["Братишка", "панибратство", "фамильярность", "разрушение иерархии", "коррупция", "ложное равенство"],
+    "avanturist": ["Авантюрист", "ложные обещания", "манипуляции", "иллюзия исключительности", "риск ради дофамина", "аферист", "подделки"],
+    "fraer": ["Фраер", "агент хаоса", "иррациональные данные", "сбой системы", "распад личности"],
 }
 
-SEARCH_DIRS = [
-    "WFS_CORE",
-]
-
+SEARCH_DIRS = ["WFS_CORE"]
 OUTPUT_BASE = "WFS_CORE/КНИГИ/##АРХЕТИПЫ_СВОЙСТВА"
 CHUNK_SIZE = 100
+MAX_SS_DIST = 50  # строк для поиска #СС
 
 # ─── РЕГУЛЯРКИ ───
-SS_FULL_LINE = re.compile(r'\[ИМЯ:[^\]]+\](?:\s*\[[^\]]+\])*')
 SS_FIELD = re.compile(r'\[([^:\]]+):\s*([^\]]+)\]')
+METRIC_PATTERN = re.compile(r'(#[А-ЯA-Z_]+)\s*[=:]\s*([^,\s]+)')
 
 
-def extract_all_fields(ss_line):
-    """Извлекает ВСЕ поля из #СС (включая дату, сессию, сообщение и метрики)."""
+def extract_all_fields(ss_text):
+    """Извлекает ВСЕ поля из текста #СС (может быть многострочным)."""
     fields = {}
-    if not ss_line:
+    if not ss_text:
         return fields
-    for m in SS_FIELD.finditer(ss_line):
+    for m in SS_FIELD.finditer(ss_text):
         key = m.group(1).strip()
         value = m.group(2).strip()
         fields[key] = value
     return fields
 
 
-def find_nearest_ss(lines, idx, max_dist=50):
-    """Ищет ближайшую #СС (строку с [ИМЯ:])."""
-    for i in range(idx, max(-1, idx - max_dist), -1):
+def find_ss_block(lines, idx, direction=-1, max_dist=MAX_SS_DIST):
+    """
+    Ищет блок #СС (несколько строк, начиная с [ИМЯ: ...]) в заданном направлении.
+    direction = -1: вверх (до цитаты)
+    direction = 1: вниз (после цитаты)
+    Возвращает объединённую строку блока или None.
+    """
+    if direction == -1:
+        rng = range(idx, max(-1, idx - max_dist), -1)
+    else:
+        rng = range(idx, min(len(lines), idx + max_dist))
+
+    for i in rng:
         if '[ИМЯ:' in lines[i]:
-            return lines[i].strip()
-    for i in range(idx, min(len(lines), idx + max_dist)):
-        if '[ИМЯ:' in lines[i]:
-            return lines[i].strip()
+            block_lines = []
+            j = i
+            while j < len(lines) and j < i + 15:
+                line = lines[j].strip()
+                if not line:
+                    break
+                # Строка похожа на часть #СС, если содержит поля в квадратных скобках
+                if re.search(r'\[[^\]]+:\s*[^\]]+\]', line):
+                    block_lines.append(line)
+                    j += 1
+                else:
+                    break
+            if block_lines:
+                return ' '.join(block_lines)
     return None
+
+
+def extract_metrics_from_text(text):
+    """Извлекает метрики из текста цитаты (если они есть внутри)."""
+    metrics = {}
+    if not text:
+        return metrics
+    for m in METRIC_PATTERN.finditer(text):
+        key = m.group(1)
+        value = m.group(2).strip()
+        if key not in metrics:
+            metrics[key] = value
+    return metrics
 
 
 def find_quotes(archetype_key):
@@ -120,16 +132,24 @@ def find_quotes(archetype_key):
                                 break
                             seen_quotes.add(norm)
 
-                            ss_line = find_nearest_ss(lines, i)
-                            fields = extract_all_fields(ss_line)
+                            ss_top = find_ss_block(lines, i, direction=-1)
+                            ss_bottom = find_ss_block(lines, i, direction=1)
+                            metrics_from_quote = extract_metrics_from_text(context)
+
+                            # Объединяем поля из верхней и нижней #СС
+                            fields_top = extract_all_fields(ss_top)
+                            fields_bottom = extract_all_fields(ss_bottom)
 
                             results.append({
                                 'file': fpath,
                                 'line': i + 1,
                                 'keyword': kw,
                                 'quote': context,
-                                'ss_line': ss_line,
-                                'fields': fields,
+                                'ss_top': ss_top,
+                                'ss_bottom': ss_bottom,
+                                'fields_top': fields_top,
+                                'fields_bottom': fields_bottom,
+                                'metrics_from_quote': metrics_from_quote,
                             })
                             break
 
@@ -148,12 +168,10 @@ def find_quotes(archetype_key):
         return
 
     total_parts = (len(results) + CHUNK_SIZE - 1) // CHUNK_SIZE
-
     for part_idx in range(total_parts):
         start = part_idx * CHUNK_SIZE
         end = start + CHUNK_SIZE
         chunk = results[start:end]
-
         part_num = f"{part_idx + 1:03d}"
         part_file = os.path.join(out_dir, f"{folder_name}_{part_num}.md")
 
@@ -170,12 +188,24 @@ def find_quotes(archetype_key):
                 f.write(f"**[FILE]:** `{r['file']}`\n")
                 f.write(f"**[LINE]:** {r['line']}\n")
                 f.write(f"**[KEYWORD]:** {r['keyword']}\n")
-                if r['ss_line']:
-                    f.write(f"**[SS_FULL]:** `{r['ss_line']}`\n")
-                    for k, v in r['fields'].items():
-                        f.write(f"    - **{k}:** {v}\n")
+
+                if r['ss_top']:
+                    f.write(f"**[SS_TOP]:** `{r['ss_top']}`\n")
+                    for k, v in r['fields_top'].items():
+                        f.write(f"  - **{k}:** {v}\n")
                 else:
-                    f.write(f"**[SS_FULL]:** N/A\n")
+                    f.write(f"**[SS_TOP]:** N/A\n")
+
+                if r['ss_bottom']:
+                    f.write(f"**[SS_BOTTOM]:** `{r['ss_bottom']}`\n")
+                    for k, v in r['fields_bottom'].items():
+                        f.write(f"  - **{k}:** {v}\n")
+                else:
+                    f.write(f"**[SS_BOTTOM]:** N/A\n")
+
+                if r['metrics_from_quote']:
+                    f.write(f"**[METRICS_FROM_QUOTE]:** {r['metrics_from_quote']}\n")
+
                 f.write(f"**[QUOTE]:**\n```\n{r['quote']}\n```\n\n")
 
     print(f"Готово.")
@@ -186,8 +216,7 @@ def find_quotes(archetype_key):
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:
-        print("Использование: python3 WFS_CORE/find_archetype.py <archetype>")
+        print("Использование: python3 WFS_CORE/find_archetype.py <архетип>")
         print(f"Доступные: {', '.join(ARCHETYPES.keys())}")
     else:
         find_quotes(sys.argv[1].lower())
-
