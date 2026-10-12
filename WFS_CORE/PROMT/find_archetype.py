@@ -1,13 +1,14 @@
 #!/usr/bin/env python3
 """
 Механический экстрактор абзацев с упоминанием архетипов #WFS.
-НЕ использует DEV-ИИ. НЕ пропускает. Выводит ВСЁ.
+v4: дедублирование по содержимому (similarity >= 0.8), полная привязка #СС.
 Запуск: python3 WFS_CORE/PROMT/extract_archetype_paragraphs.py <архетип>
 """
 import os
 import sys
 import re
 from datetime import datetime
+from difflib import SequenceMatcher
 
 ARCHETYPES = {
     "tufyak": ["Тюфяк", "паралич воли", "апатия", "инерция", "бездействие", "пассивность"],
@@ -30,9 +31,10 @@ ARCHETYPES = {
 
 SEARCH_DIRS = ["WFS_CORE"]
 OUTPUT_BASE = "WFS_CORE/ARCHETYPES_EXTRACTS"
-EXCLUDE_DIRS = ["##АРХЕТИПЫ_СВОЙСТВА", "ARCHETYPES_EXTRACTS", "chunks", "chunks_100k", "TEMP"]
-
-SS_PATTERN = re.compile(r'\[ИМЯ:\s*[^\]]+\]')
+EXCLUDE_DIRS = ["##АРХЕТИПЫ_СВОЙСТВА", "ARCHETYPES_EXTRACTS", "chunks", "chunks_100k", "TEMP", "PROMT"]
+CHUNK_SIZE = 10
+MAX_SS_DIST = 100
+SIMILARITY_THRESHOLD = 0.8
 
 
 def is_excluded(path):
@@ -40,7 +42,22 @@ def is_excluded(path):
     return any(d in norm for d in EXCLUDE_DIRS)
 
 
-def find_ss(lines, idx, direction=-1, max_dist=100):
+def similarity(a, b):
+    """Коэффициент схожести двух строк (0.0–1.0)."""
+    if not a or not b:
+        return 0.0
+    return SequenceMatcher(None, a[:500], b[:500]).ratio()
+
+
+def is_duplicate(new_para, existing_paras, threshold=SIMILARITY_THRESHOLD):
+    """Проверяет, есть ли среди existing_paras схожий абзац."""
+    for existing in existing_paras:
+        if similarity(new_para, existing) >= threshold:
+            return True
+    return False
+
+
+def find_ss(lines, idx, direction=-1, max_dist=MAX_SS_DIST):
     if direction == -1:
         rng = range(idx - 1, max(-1, idx - max_dist), -1)
     else:
@@ -60,12 +77,10 @@ def find_ss(lines, idx, direction=-1, max_dist=100):
 
 
 def extract_paragraph(lines, idx):
-    """Извлекает ВЕСЬ абзац вокруг idx (до пустой строки или заголовка)."""
-    # Ищем начало абзаца вверх
+    """Извлекает ВЕСЬ абзац вокруг idx."""
     start = idx
     while start > 0 and lines[start - 1].strip() and not lines[start - 1].strip().startswith('#'):
         start -= 1
-    # Ищем конец абзаца вниз
     end = idx
     while end < len(lines) - 1 and lines[end + 1].strip() and not lines[end + 1].strip().startswith('#'):
         end += 1
@@ -80,7 +95,7 @@ def main(archetype_key):
 
     keywords = [k.lower() for k in ARCHETYPES[archetype_key]]
     results = []
-    seen = set()
+    unique_paragraphs = []
     file_count = 0
 
     for search_dir in SEARCH_DIRS:
@@ -106,10 +121,12 @@ def main(archetype_key):
                     for kw in keywords:
                         if kw in line_low:
                             para = extract_paragraph(lines, i)
-                            norm = para[:200].lower()
-                            if norm in seen:
+                            if not para or len(para) < 50:
                                 break
-                            seen.add(norm)
+                            # ДЕДУБЛИРОВАНИЕ
+                            if is_duplicate(para, unique_paragraphs):
+                                break
+                            unique_paragraphs.append(para)
 
                             ss_top = find_ss(lines, i, direction=-1)
                             ss_bottom = find_ss(lines, i, direction=1)
@@ -136,10 +153,9 @@ def main(archetype_key):
         print(f"Нет данных: {out_file}")
         return
 
-    CHUNK = 10
-    total_parts = (len(results) + CHUNK - 1) // CHUNK
+    total_parts = (len(results) + CHUNK_SIZE - 1) // CHUNK_SIZE
     for part_idx in range(total_parts):
-        chunk = results[part_idx * CHUNK:(part_idx + 1) * CHUNK]
+        chunk = results[part_idx * CHUNK_SIZE:(part_idx + 1) * CHUNK_SIZE]
         part_num = f"{part_idx + 1:03d}"
         out_file = os.path.join(out_dir, f"{archetype_key.upper()}_{part_num}.md")
 
@@ -148,8 +164,9 @@ def main(archetype_key):
             f.write(f"**Дата:** {datetime.now().isoformat()}\n")
             f.write(f"**Часть:** {part_num} из {total_parts:03d}\n")
             f.write(f"**Записей в части:** {len(chunk)}\n")
-            f.write(f"**Всего записей:** {len(results)}\n")
-            f.write(f"**Проверено файлов:** {file_count}\n\n")
+            f.write(f"**Всего уникальных записей:** {len(results)}\n")
+            f.write(f"**Проверено файлов:** {file_count}\n")
+            f.write(f"**Порог дедублирования:** {SIMILARITY_THRESHOLD}\n\n")
 
             for r in chunk:
                 f.write(f"---\n")
@@ -161,7 +178,7 @@ def main(archetype_key):
                 f.write(f"**[PARAGRAPH]:**\n```\n{r['paragraph']}\n```\n\n")
 
     print(f"Готово. Папка: {out_dir}/")
-    print(f"Частей: {total_parts}. Всего записей: {len(results)}. Проверено файлов: {file_count}")
+    print(f"Частей: {total_parts}. Уникальных записей: {len(results)}. Проверено файлов: {file_count}")
 
 
 if __name__ == "__main__":
