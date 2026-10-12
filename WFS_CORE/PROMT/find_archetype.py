@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
 """
-Универсальный поиск архетипов #WFS со сбором ПОЛНОЙ #СС (верхней и нижней).
-Добавлена жёсткая привязка: блок #СС, а не одна строка.
-Извлечение метрик из текста цитаты.
-Запуск: python3 WFS_CORE/find_archetype.py <архетип>
+Механический экстрактор абзацев с упоминанием архетипов #WFS.
+НЕ использует DEV-ИИ. НЕ пропускает. Выводит ВСЁ.
+Запуск: python3 WFS_CORE/PROMT/extract_archetype_paragraphs.py <архетип>
 """
 import os
 import sys
@@ -11,105 +10,86 @@ import re
 from datetime import datetime
 
 ARCHETYPES = {
-    "tufyak": ["Тюфяк", "паралич воли", "апатия", "инерция", "бездействие", "пассивность", "аморфность", "бесформенность", "обездвиженность", "Passive Collapse"],
-    "kisel": ["Кисель", "тамас", "ложное смирение", "духовная лень", "безволие", "всё воля Бога", "я грешный", "не суетитесь", "смирись и терпи", "маскировка под благость"],
-    "straus": ["Страус", "аноним", "анонимность", "голова в песок", "отрицание реальности", "уход от ответственности", "капитуляция"],
-    "fazan": ["Фазан", "оправдание", "декоратор ошибок", "имитация", "красивые объяснения", "отвлекающие манёвры"],
-    "skvoznyak": ["Сквозняк", "паранойя", "ложные угрозы", "теория заговора", "блокировка воли", "паника"],
-    "zanuda": ["Зануда", "псевдо-интеллектуал", "бесконечный анализ", "информационный шум", "паралич анализа", "согласования"],
-    "malyavka": ["Малявка", "суета", "имитация активности", "мелкие ошибки", "отсутствие результата"],
-    "krot": ["Крот", "системный рецидивист", "повтор ошибок", "догматизм", "ригидность", "так всегда было"],
-    "sova": ["Сова", "фрагментация внимания", "уход в детали", "потеря формы", "потеря цели", "энергоспад"],
-    "skryaga": ["Скряга", "воровство", "обесценивание", "занижение метрик", "скупость", "забывание благодарности"],
-    "zuka": ["Зука", "уязвлённое самолюбие", "обида", "месть", "желание доказать", "холодное молчание"],
-    "kulak": ["Кулак", "грубая сила", "примитивный редуктор", "физическое действие", "насилие"],
-    "baklazhan": ["Баклажан", "доминация", "давление", "ультиматум", "игнорирование обратной связи", "авторитет силы"],
-    "bratishka": ["Братишка", "панибратство", "фамильярность", "разрушение иерархии", "коррупция", "ложное равенство"],
-    "avanturist": ["Авантюрист", "ложные обещания", "манипуляции", "иллюзия исключительности", "риск ради дофамина", "аферист", "подделки"],
-    "fraer": ["Фраер", "агент хаоса", "иррациональные данные", "сбой системы", "распад личности"],
+    "tufyak": ["Тюфяк", "паралич воли", "апатия", "инерция", "бездействие", "пассивность"],
+    "kisel": ["Кисель", "тамас", "ложное смирение", "духовная лень", "безволие", "я грешный"],
+    "straus": ["Страус", "аноним", "анонимность", "голова в песок", "отрицание реальности"],
+    "fazan": ["Фазан", "оправдание", "декоратор ошибок", "имитация"],
+    "skvoznyak": ["Сквозняк", "паранойя", "ложные угрозы", "теория заговора", "паника"],
+    "zanuda": ["Зануда", "псевдо-интеллектуал", "бесконечный анализ", "информационный шум"],
+    "malyavka": ["Малявка", "суета", "имитация активности"],
+    "krot": ["Крот", "системный рецидивист", "повтор ошибок", "догматизм"],
+    "sova": ["Сова", "фрагментация внимания", "уход в детали", "потеря цели"],
+    "skryaga": ["Скряга", "воровство", "обесценивание", "занижение метрик", "скупость"],
+    "zuka": ["Зука", "уязвлённое самолюбие", "обида", "месть"],
+    "kulak": ["Кулак", "грубая сила", "примитивный редуктор"],
+    "baklazhan": ["Баклажан", "доминация", "давление", "ультиматум"],
+    "bratishka": ["Братишка", "панибратство", "фамильярность", "разрушение иерархии"],
+    "avanturist": ["Авантюрист", "ложные обещания", "манипуляции", "иллюзия исключительности"],
+    "fraer": ["Фраер", "агент хаоса", "иррациональные данные"],
 }
 
 SEARCH_DIRS = ["WFS_CORE"]
-OUTPUT_BASE = "WFS_CORE/КНИГИ/##АРХЕТИПЫ_СВОЙСТВА"
-CHUNK_SIZE = 100
-MAX_SS_DIST = 50  # строк для поиска #СС
+OUTPUT_BASE = "WFS_CORE/ARCHETYPES_EXTRACTS"
+EXCLUDE_DIRS = ["##АРХЕТИПЫ_СВОЙСТВА", "ARCHETYPES_EXTRACTS", "chunks", "chunks_100k", "TEMP"]
 
-# ─── РЕГУЛЯРКИ ───
-SS_FIELD = re.compile(r'\[([^:\]]+):\s*([^\]]+)\]')
-METRIC_PATTERN = re.compile(r'(#[А-ЯA-Z_]+)\s*[=:]\s*([^,\s]+)')
+SS_PATTERN = re.compile(r'\[ИМЯ:\s*[^\]]+\]')
 
 
-def extract_all_fields(ss_text):
-    """Извлекает ВСЕ поля из текста #СС (может быть многострочным)."""
-    fields = {}
-    if not ss_text:
-        return fields
-    for m in SS_FIELD.finditer(ss_text):
-        key = m.group(1).strip()
-        value = m.group(2).strip()
-        fields[key] = value
-    return fields
+def is_excluded(path):
+    norm = path.replace('\\', '/')
+    return any(d in norm for d in EXCLUDE_DIRS)
 
 
-def find_ss_block(lines, idx, direction=-1, max_dist=MAX_SS_DIST):
-    """
-    Ищет блок #СС (несколько строк, начиная с [ИМЯ: ...]) в заданном направлении.
-    direction = -1: вверх (до цитаты)
-    direction = 1: вниз (после цитаты)
-    Возвращает объединённую строку блока или None.
-    """
+def find_ss(lines, idx, direction=-1, max_dist=100):
     if direction == -1:
-        rng = range(idx, max(-1, idx - max_dist), -1)
+        rng = range(idx - 1, max(-1, idx - max_dist), -1)
     else:
-        rng = range(idx, min(len(lines), idx + max_dist))
-
+        rng = range(idx + 1, min(len(lines), idx + max_dist))
     for i in rng:
         if '[ИМЯ:' in lines[i]:
-            block_lines = []
-            j = i
-            while j < len(lines) and j < i + 15:
-                line = lines[j].strip()
-                if not line:
-                    break
-                # Строка похожа на часть #СС, если содержит поля в квадратных скобках
-                if re.search(r'\[[^\]]+:\s*[^\]]+\]', line):
-                    block_lines.append(line)
+            block = [lines[i].strip()]
+            j = i + 1
+            while j < len(lines) and j < i + 10:
+                if re.search(r'\[[^\]]+:\s*[^\]]+\]', lines[j]):
+                    block.append(lines[j].strip())
                     j += 1
                 else:
                     break
-            if block_lines:
-                return ' '.join(block_lines)
+            return ' '.join(block)
     return None
 
 
-def extract_metrics_from_text(text):
-    """Извлекает метрики из текста цитаты (если они есть внутри)."""
-    metrics = {}
-    if not text:
-        return metrics
-    for m in METRIC_PATTERN.finditer(text):
-        key = m.group(1)
-        value = m.group(2).strip()
-        if key not in metrics:
-            metrics[key] = value
-    return metrics
+def extract_paragraph(lines, idx):
+    """Извлекает ВЕСЬ абзац вокруг idx (до пустой строки или заголовка)."""
+    # Ищем начало абзаца вверх
+    start = idx
+    while start > 0 and lines[start - 1].strip() and not lines[start - 1].strip().startswith('#'):
+        start -= 1
+    # Ищем конец абзаца вниз
+    end = idx
+    while end < len(lines) - 1 and lines[end + 1].strip() and not lines[end + 1].strip().startswith('#'):
+        end += 1
+    return ''.join(lines[start:end + 1]).strip()
 
 
-def find_quotes(archetype_key):
+def main(archetype_key):
     if archetype_key not in ARCHETYPES:
-        print(f"Ошибка: архетип '{archetype_key}' не найден.")
+        print(f"Ошибка: '{archetype_key}' не найден.")
         print(f"Доступные: {', '.join(ARCHETYPES.keys())}")
         return
 
-    keywords = ARCHETYPES[archetype_key]
+    keywords = [k.lower() for k in ARCHETYPES[archetype_key]]
     results = []
+    seen = set()
     file_count = 0
-    seen_quotes = set()
 
     for search_dir in SEARCH_DIRS:
         if not os.path.exists(search_dir):
             continue
         for root, dirs, files in os.walk(search_dir):
+            dirs[:] = [d for d in dirs if not is_excluded(os.path.join(root, d))]
+            if is_excluded(root):
+                continue
             for fname in files:
                 if not fname.endswith(('.md', '.txt')):
                     continue
@@ -122,62 +102,50 @@ def find_quotes(archetype_key):
                     continue
 
                 for i, line in enumerate(lines):
+                    line_low = line.lower()
                     for kw in keywords:
-                        if kw.lower() in line.lower():
-                            start = max(0, i - 4)
-                            end = min(len(lines), i + 5)
-                            context = ''.join(lines[start:end]).strip()
-                            norm = context[:200].lower()
-                            if norm in seen_quotes:
+                        if kw in line_low:
+                            para = extract_paragraph(lines, i)
+                            norm = para[:200].lower()
+                            if norm in seen:
                                 break
-                            seen_quotes.add(norm)
+                            seen.add(norm)
 
-                            ss_top = find_ss_block(lines, i, direction=-1)
-                            ss_bottom = find_ss_block(lines, i, direction=1)
-                            metrics_from_quote = extract_metrics_from_text(context)
-
-                            # Объединяем поля из верхней и нижней #СС
-                            fields_top = extract_all_fields(ss_top)
-                            fields_bottom = extract_all_fields(ss_bottom)
+                            ss_top = find_ss(lines, i, direction=-1)
+                            ss_bottom = find_ss(lines, i, direction=1)
 
                             results.append({
                                 'file': fpath,
                                 'line': i + 1,
                                 'keyword': kw,
-                                'quote': context,
                                 'ss_top': ss_top,
                                 'ss_bottom': ss_bottom,
-                                'fields_top': fields_top,
-                                'fields_bottom': fields_bottom,
-                                'metrics_from_quote': metrics_from_quote,
+                                'paragraph': para,
                             })
                             break
 
-    folder_name = archetype_key.upper()
-    out_dir = os.path.join(OUTPUT_BASE, folder_name)
+    out_dir = os.path.join(OUTPUT_BASE, archetype_key.upper())
     os.makedirs(out_dir, exist_ok=True)
 
     if not results:
-        single_file = os.path.join(out_dir, f"{folder_name}_001.md")
-        with open(single_file, 'w', encoding='utf-8') as f:
-            f.write(f"# RAW DATA: {folder_name}\n")
+        out_file = os.path.join(out_dir, f"{archetype_key.upper()}_001.md")
+        with open(out_file, 'w', encoding='utf-8') as f:
+            f.write(f"# RAW DATA: {archetype_key.upper()}\n")
             f.write(f"**Дата:** {datetime.now().isoformat()}\n")
-            f.write(f"**Найдено:** 0 совпадений\n\n")
-            f.write("NO DATA\n")
-        print(f"Нет данных. Создан пустой файл: {single_file}")
+            f.write(f"**Найдено:** 0\n\nNO DATA\n")
+        print(f"Нет данных: {out_file}")
         return
 
-    total_parts = (len(results) + CHUNK_SIZE - 1) // CHUNK_SIZE
+    CHUNK = 100
+    total_parts = (len(results) + CHUNK - 1) // CHUNK
     for part_idx in range(total_parts):
-        start = part_idx * CHUNK_SIZE
-        end = start + CHUNK_SIZE
-        chunk = results[start:end]
+        chunk = results[part_idx * CHUNK:(part_idx + 1) * CHUNK]
         part_num = f"{part_idx + 1:03d}"
-        part_file = os.path.join(out_dir, f"{folder_name}_{part_num}.md")
+        out_file = os.path.join(out_dir, f"{archetype_key.upper()}_{part_num}.md")
 
-        with open(part_file, 'w', encoding='utf-8') as f:
-            f.write(f"# RAW DATA: {folder_name}\n")
-            f.write(f"**Дата генерации:** {datetime.now().isoformat()}\n")
+        with open(out_file, 'w', encoding='utf-8') as f:
+            f.write(f"# RAW DATA: {archetype_key.upper()}\n")
+            f.write(f"**Дата:** {datetime.now().isoformat()}\n")
             f.write(f"**Часть:** {part_num} из {total_parts:03d}\n")
             f.write(f"**Записей в части:** {len(chunk)}\n")
             f.write(f"**Всего записей:** {len(results)}\n")
@@ -188,35 +156,17 @@ def find_quotes(archetype_key):
                 f.write(f"**[FILE]:** `{r['file']}`\n")
                 f.write(f"**[LINE]:** {r['line']}\n")
                 f.write(f"**[KEYWORD]:** {r['keyword']}\n")
+                f.write(f"**[SS_TOP]:** `{r['ss_top'] or 'N/A'}`\n")
+                f.write(f"**[SS_BOTTOM]:** `{r['ss_bottom'] or 'N/A'}`\n")
+                f.write(f"**[PARAGRAPH]:**\n```\n{r['paragraph']}\n```\n\n")
 
-                if r['ss_top']:
-                    f.write(f"**[SS_TOP]:** `{r['ss_top']}`\n")
-                    for k, v in r['fields_top'].items():
-                        f.write(f"  - **{k}:** {v}\n")
-                else:
-                    f.write(f"**[SS_TOP]:** N/A\n")
-
-                if r['ss_bottom']:
-                    f.write(f"**[SS_BOTTOM]:** `{r['ss_bottom']}`\n")
-                    for k, v in r['fields_bottom'].items():
-                        f.write(f"  - **{k}:** {v}\n")
-                else:
-                    f.write(f"**[SS_BOTTOM]:** N/A\n")
-
-                if r['metrics_from_quote']:
-                    f.write(f"**[METRICS_FROM_QUOTE]:** {r['metrics_from_quote']}\n")
-
-                f.write(f"**[QUOTE]:**\n```\n{r['quote']}\n```\n\n")
-
-    print(f"Готово.")
-    print(f"Папка: {out_dir}/")
-    print(f"Частей: {total_parts}")
-    print(f"Всего записей: {len(results)} (проверено файлов: {file_count})")
+    print(f"Готово. Папка: {out_dir}/")
+    print(f"Частей: {total_parts}. Всего записей: {len(results)}. Проверено файлов: {file_count}")
 
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:
-        print("Использование: python3 WFS_CORE/find_archetype.py <архетип>")
+        print("Использование: python3 WFS_CORE/PROMT/extract_archetype_paragraphs.py <архетип>")
         print(f"Доступные: {', '.join(ARCHETYPES.keys())}")
     else:
-        find_quotes(sys.argv[1].lower())
+        main(sys.argv[1].lower())
