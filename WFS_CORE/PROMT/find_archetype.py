@@ -136,7 +136,7 @@ def main(archetype_key):
         print(f"Нет данных: {out_file}")
         return
 
-    CHUNK = 100
+    CHUNK = 10
     total_parts = (len(results) + CHUNK - 1) // CHUNK
     for part_idx in range(total_parts):
         chunk = results[part_idx * CHUNK:(part_idx + 1) * CHUNK]
