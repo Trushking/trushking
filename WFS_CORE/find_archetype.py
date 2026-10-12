@@ -60,7 +60,7 @@ SEARCH_DIRS = [
 ]
 
 OUTPUT_BASE = "WFS_CORE/КНИГИ/##АРХЕТИПЫ_СВОЙСТВА"
-CHUNK_SIZE = 500
+CHUNK_SIZE = 50
 
 # ─── РЕГУЛЯРКИ ───
 SS_FULL_LINE = re.compile(r'\[ИМЯ:[^\]]+\](?:\s*\[[^\]]+\])*')
