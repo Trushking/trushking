@@ -49,18 +49,11 @@ ARCHETYPES = {
 }
 
 SEARCH_DIRS = [
-    "WFS_CORE/ОТЧЁТЫ_АГЕНТОВ",
-    "WFS_CORE/КНИГИ",
-    "WFS_CORE/%23%23WFS-МЕТРИКИ",
-    "WFS_CORE/РЕФЛЕКСИИ",
-    "WFS_CORE/INSTRUCTIONS",
-    "WFS_CORE/PILOT_AI_METRICS",
-    "WFS_CORE/ПРАВО",
-    "WFS_CORE/%23USSR",
+    "WFS_CORE",
 ]
 
 OUTPUT_BASE = "WFS_CORE/КНИГИ/##АРХЕТИПЫ_СВОЙСТВА"
-CHUNK_SIZE = 500
+CHUNK_SIZE = 100
 
 # ─── РЕГУЛЯРКИ ───
 SS_FULL_LINE = re.compile(r'\[ИМЯ:[^\]]+\](?:\s*\[[^\]]+\])*')
