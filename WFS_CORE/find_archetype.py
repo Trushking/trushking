@@ -6,6 +6,7 @@
 import os
 import sys
 import re
+import hashlib
 from datetime import datetime
 
 ARCHETYPES = {
@@ -46,14 +47,7 @@ ARCHETYPES = {
 }
 
 SEARCH_DIRS = [
-    "WFS_CORE/ОТЧЁТЫ_АГЕНТОВ",
-    "WFS_CORE/КНИГИ",
-    "WFS_CORE/%23%23WFS-МЕТРИКИ",
-    "WFS_CORE/РЕФЛЕКСИИ",
-    "WFS_CORE/INSTRUCTIONS",
-    "WFS_CORE/PILOT_AI_METRICS",
-    "WFS_CORE/ПРАВО",
-    "WFS_CORE/%23USSR",
+    "WFS_CORE",
 ]
 
 # ИСКЛЮЧАЕМЫЕ ПАПКИ (не сканировать)
@@ -132,15 +126,17 @@ def find_quotes(archetype_key):
                             ss_line = find_nearest_ss(lines, i)
                             fields = extract_all_fields(ss_line)
 
-                            results.append({
-                                'file': fpath,
-                                'line': i + 1,
-                                'keyword': kw,
-                                'quote': context,
-                                'ss_line': ss_line,
-                                'fields': fields,
-                            })
-                            break
+            quote_hash = hashlib.sha256(context.encode('utf-8')).hexdigest()[:16]
+            results.append({
+                'file': fpath,
+                'line': i + 1,
+                'keyword': kw,
+                'quote': context,
+                'ss_line': ss_line,
+                'fields': fields,
+                'quote_hash': quote_hash,
+            })
+            break
 
     folder_name = archetype_key.upper()
     out_dir = os.path.join(OUTPUT_BASE, folder_name)
@@ -184,6 +180,7 @@ def find_quotes(archetype_key):
                         f.write(f"  - **{k}:** {v}\n")
                 else:
                     f.write(f"**[SS_FULL]:** N/A\n")
+                f.write(f"**[ХЭШ]:** `{r['quote_hash']}`\n")
                 f.write(f"**[QUOTE]:**\n```\n{r['quote']}\n```\n\n")
 
     print(f"Готово.")
