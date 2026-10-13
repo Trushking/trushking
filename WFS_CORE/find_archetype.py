@@ -126,17 +126,17 @@ def find_quotes(archetype_key):
                             ss_line = find_nearest_ss(lines, i)
                             fields = extract_all_fields(ss_line)
 
-            quote_hash = hashlib.sha256(context.encode('utf-8')).hexdigest()[:16]
-            results.append({
-                'file': fpath,
-                'line': i + 1,
-                'keyword': kw,
-                'quote': context,
-                'ss_line': ss_line,
-                'fields': fields,
-                'quote_hash': quote_hash,
-            })
-            break
+                            quote_hash = hashlib.sha256(context.encode('utf-8')).hexdigest()[:16]
+                            results.append({
+                                'file': fpath,
+                                'line': i + 1,
+                                'keyword': kw,
+                                'quote': context,
+                                'ss_line': ss_line,
+                                'fields': fields,
+                                'quote_hash': quote_hash,
+                            })
+                            break
 
     folder_name = archetype_key.upper()
     out_dir = os.path.join(OUTPUT_BASE, folder_name)
