@@ -1,0 +1,1 @@
+cd WFS_CORE && python3 deepseek_convert.py
