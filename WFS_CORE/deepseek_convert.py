@@ -1,4 +1,3 @@
-cd WFS_CORE && python3 - <<'PY'
 import json, os, hashlib, re
 from datetime import datetime
 
@@ -91,4 +90,3 @@ for part_idx in range(0, len(all_blocks), CHUNK_SIZE):
 print(f"Готово.")
 print(f"MD-файлы: {OUT_MD}/")
 print(f"Чанки: {OUT_CHUNKS}/ ({len(all_blocks)//CHUNK_SIZE + 1} файлов)")
-PY
