@@ -2,7 +2,7 @@ cd WFS_CORE && python3 - <<'PY'
 import json, os, hashlib, re
 from datetime import datetime
 
-INPUT = "deepseek_data-2026-10-12.json"   # путь к архиву
+INPUT = "deepseek_data-2026-10-17.json"   # путь к архиву
 OUT_MD = "DEEPSEEK_MD"                     # папка для MD
 OUT_CHUNKS = "DEEPSEEK_CHUNKS"             # папка для нарезанных блоков
 CHUNK_SIZE = 10                             # блоков в одном файле
