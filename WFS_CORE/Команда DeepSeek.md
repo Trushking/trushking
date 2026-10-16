@@ -1,1 +1,1 @@
-cd WFS_CORE && python3 deepseek_convert.py
+python3 deepseek_convert.py
