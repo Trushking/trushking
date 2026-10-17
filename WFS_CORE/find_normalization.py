@@ -1093,7 +1093,7 @@ NORMALIZATION_PATTERNS = {
   
 }
 
-SEARCH_ROOT = "WFS_CORE/КНИГИ/%23%23АРХЕТИПЫ_СВОЙСТВА" 
+SEARCH_ROOT = "WFS_CORE" 
 OUTPUT_BASE = "WFS_CORE/КНИГИ/##АРХЕТИПЫ_СВОЙСТВА"
 CHUNK_SIZE = 500
 
