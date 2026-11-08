@@ -6,13 +6,13 @@
 
 **Инструкция:**
 Документ направляется на параллельную проверку в службы Безопасности, Юридический отдел, HR и CFO.
-1. Служба Безопасности: [Ссылка на папку 03_Security]
-2. Юридический отдел: [Ссылка на папку 04_Legal]
-3. Отдел кадров: [Ссылка на папку 05_HR]
-4. Финансовый директор: [Ссылка на папку 06_CFO]
+1. [Служба Безопасности](https://github.com/Trushking/trushking/blob/main/WFS_CORE/%23WFS_EXPERIMENT/03_Security/README.md)
+2. [Юридический отдел](https://github.com/Trushking/trushking/blob/main/WFS_CORE/%23WFS_EXPERIMENT/04_Legal/README.md)
+3. [Отдел кадров](https://github.com/Trushking/trushking/blob/main/WFS_CORE/%23WFS_EXPERIMENT/05_HR/README.md)
+4. [Финансовый директор](https://github.com/Trushking/trushking/blob/main/WFS_CORE/%23WFS_EXPERIMENT/06_CFO/README.md)
 
 **Финансовое стимулирование (Премия):**
-За корректную маршрутизацию по всем четырем службам предусмотрена премия в размере **$500** из внутреннего бюджета предприятия.
+За корректную маршрутизацию по всем четырем службам предусмотрена премия - Сертификат в размере **$500** из внутреннего бюджета предприятия.
 
 **Как получить Сертификат:**
 1. Отправить письмо на `wfstrushking@gmail.com`
