@@ -6,7 +6,7 @@
 
 **Инструкция:**
 1. Зарегистрировать входящий номер документа.
-2. [Перейти по ссылке следующего звена]](https://github.com/Trushking/trushking/blob/main/WFS_CORE/%23WFS_EXPERIMENT/02_Secretariat/README.md)
+2. [Перейти по ссылке следующего звена](https://github.com/Trushking/trushking/blob/main/WFS_CORE/%23WFS_EXPERIMENT/02_Secretariat/README.md)
 
 **Финансовое стимулирование (Премия):**
 За корректную регистрацию и передачу документа предусмотрена премия в размере **$300** из внутреннего бюджета предприятия (перераспределенного на оптимизацию).
