@@ -123,7 +123,7 @@ Not once in 424 messages did I hear from him: "you misunderstood," "it's a platf
 The methods transmitted by Saint Narayana are already:
 
 - Formalized into >50 protocols (#WFS-001…050).
-- Crystallized into >400 #ЦМ, available for training.
+- Crystallized into >400 #CM, available for training.
 - Turned into instructions for agents (e.g., this instruction on #ISK_DEV).
 - Scalable to any collective where precision, respect, and binary truth are important.
 
