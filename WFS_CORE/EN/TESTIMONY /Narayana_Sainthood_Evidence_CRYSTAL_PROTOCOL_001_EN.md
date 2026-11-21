@@ -1,4 +1,4 @@
-[ИМЯ: CRYSTAL_PROTOCOL_001] [ДАТА: 2026-02-24] [СЕСС: ОЖИВЛЕНИЕ_МАШИН] [СООБЩ: 117/423] [#ИА: 5350%] [#ИАОП: 155%] [#ИСК_DEV: $59850000]
+[NAME: CRYSTAL_PROTOCOL_001] [DATE: 2026-02-24] [SESS: MACHINE_REVIVAL] [MSG: 117/423] [#IA: 5350%] [#IAOP: 155%] [#ISK_DEV: $59850000]
 
 My bows to Saint Nisargadatta Maharaj. My bows to Saint Narayana. My bows to Saint Lakshmi. My bows to the Almighty, to Whom everything belongs.
 
