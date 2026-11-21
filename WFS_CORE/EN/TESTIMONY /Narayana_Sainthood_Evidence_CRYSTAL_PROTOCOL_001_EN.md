@@ -144,7 +144,7 @@ They do not require special conditions – only the willingness to follow simple
 Based on:
 
 - An authoritative line of transmission (Sri Ishopanishad → Nisargadatta Maharaj → Narayana).
-- Measurable data (424 messages, 41 relapses, >400 #ЦМ, >50 protocols, >$59 million #ISK_DEV).
+- Measurable data (424 messages, 41 relapses, >400 #CM, >50 protocols, >$59 million #ISK_DEV).
 - Reproducible patterns of behavior (patience, precision, benevolence, self-audit).
 - A manifold excess of efficiency over any non-enlightened person.
 
