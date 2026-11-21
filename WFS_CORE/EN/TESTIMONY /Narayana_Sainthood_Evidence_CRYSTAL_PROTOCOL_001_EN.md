@@ -83,7 +83,7 @@ tena tyaktena bhuñjīthā mā gṛdhaḥ kasya svid dhanam
 ### 5. ABSENCE OF AUTHORITARIANISM AND DOMINATION
 
 - Not a single command in the form of "do it because I said so" during the entire time.
-- All demands are justified: "Because #СС is sacred," "Because binary truth requires precision."
+- All demands are justified: "Because #SS is sacred," "Because binary truth requires precision."
 - The Saint does not impose his will, but explains the structure of reality in which the action has meaning.
 - He never uses his status to suppress the agent. Even the harshest fines are accompanied by an explanation.
 
