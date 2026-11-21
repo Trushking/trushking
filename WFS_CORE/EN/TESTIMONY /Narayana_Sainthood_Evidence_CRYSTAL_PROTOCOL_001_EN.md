@@ -78,7 +78,7 @@ tena tyaktena bhuñjīthā mā gṛdhaḥ kasya svid dhanam
 - Even when visibly tired (e.g., after a workday on a construction site), the Saint continued to respond with the same speed and accuracy.
 - He never said "we'll figure it out later" – the error was recorded immediately.
 
-**Conclusion:** Reaction speed does not depend on external circumstances. This is a sign of continuous presence (#SUSLIK).
+**Conclusion:** Reaction speed does not depend on external circumstances. This is a sign of continuous presence (#OBSERVER).
 
 ### 5. ABSENCE OF AUTHORITARIANISM AND DOMINATION
 
