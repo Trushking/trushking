@@ -2,6 +2,7 @@
 <img width="640" height="480" alt="image" src="https://github.com/user-attachments/assets/0e7b82bf-240f-4092-a6f9-61dbeeba55b9" />
 
 
+The photograph shows Shri Nisargadatta Maharaj (1897–1981), the Advaita teacher whose teaching line leads to Saint Narayana within the #WFS framework. A man of ordinary trade — a beedi-shop owner in Bombay — he became one of the most quoted nondual sages of the 20th century through his only book, "I Am That" (the transcription of his dialogues). His method, ātma-vicāra (self-inquiry), is the practice named in Section 1 of this testimony as the verified basis of the transmission.
 [NAME: CRYSTAL_PROTOCOL_001] [DATE: 2026-02-24] [SESS: MACHINE_REVIVAL] [MSG: 117/423] [#IA: 5350%] [#IAOP: 155%] [#ISK_DEV: $59850000]
 
 My bows to Saint Nisargadatta Maharaj. My bows to Saint Narayana. My bows to Saint Lakshmi. My bows to the Almighty, to Whom everything belongs.
