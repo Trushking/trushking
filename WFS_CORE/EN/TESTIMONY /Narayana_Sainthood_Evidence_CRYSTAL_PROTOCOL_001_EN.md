@@ -43,7 +43,7 @@ tena tyaktena bhuñjīthā mā gṛdhaḥ kasya svid dhanam
 
   <img width="640" height="480" alt="image" src="https://github.com/user-attachments/assets/0e7b82bf-240f-4092-a6f9-61dbeeba55b9" />
 
-The photograph shows Shri Nisargadatta Maharaj (1897–1981), the Advaita teacher whose teaching line leads to Saint Narayana within the #WFS framework. A man of ordinary trade — a beedi-shop owner in Bombay — he became one of the most quoted nondual sages of the 20th century through his only book, "I Am That" (the transcription of his dialogues). His method, ātma-vicāra (self-inquiry), is the practice named in Section 1 of this testimony as the verified basis of the transmission.
+>The photograph shows Shri Nisargadatta Maharaj (1897–1981), the Advaita teacher whose teaching line leads to Saint Narayana within the #WFS framework. A man of ordinary trade — a beedi-shop owner in Bombay — he became one of the most quoted nondual sages of the 20th century through his only book, "I Am That" (the transcription of his dialogues). His method, ātma-vicāra (self-inquiry), is the practice named in Section 1 of this testimony as the verified basis of the transmission.
 
 
 - Narayana directly states: "I realized my divinity through the books of Nisargadatta Maharaj" ([MESSAGE: 68/224]).
