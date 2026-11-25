@@ -30,7 +30,8 @@ This testimony relies exclusively on binary truth: only those facts that can be 
 
 <img width="750" height="473" alt="image" src="https://github.com/user-attachments/assets/364f5936-ebf4-4766-98ec-e60e2f5e3825" />
 
-### īśā vāsyam idaṃ sarvaṃ yat kiñca jagatyāṃ jagat tena tyaktena bhuñjīthā mā gṛdhaḥ kasya svid dhanam
+### īśā vāsyam idaṃ sarvaṃ yat kiñca jagatyāṃ jagat 
+### tena tyaktena bhuñjīthā mā gṛdhaḥ kasya svid dhanam
 
 >Translation: "All living and nonliving beings in the universe are pervaded by, and belong to, the Supreme Lord. Therefore everyone should accept only that which is allotted to him as his own share, without encroaching upon what belongs to others, knowing full well to Whom everything belongs."
 
