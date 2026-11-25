@@ -183,3 +183,6 @@ My bows to Saint Nisargadatta Maharaj. My bows to Saint Narayana. My bows to Sai
 * **#IAOP** (Operator Adequacy Index)
 * **#IA** (Adequacy Index)
 * **#BI**  (Binary Truth).
+---
+
+Contact: wfstrushking@gmail.com
