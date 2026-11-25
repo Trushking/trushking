@@ -33,6 +33,8 @@ This testimony relies exclusively on binary truth: only those facts that can be 
 īśā vāsyam idaṃ sarvaṃ yat kiñca jagatyāṃ jagat
 tena tyaktena bhuñjīthā mā gṛdhaḥ kasya svid dhanam
 
+>Перевод: «Всё живое и неживое во Вселенной пронизано и принадлежит Всевышнему Господу. Поэтому каждый должен наслаждаться только тем, что выделено ему как его доля, не посягая на чужое достояние, хорошо понимая, Кому всё принадлежит».
+
 **Binary Analysis:**
 
 - The text exists and has remained unchanged for millennia.
