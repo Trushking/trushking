@@ -3,7 +3,7 @@
 My bows to Saint Nisargadatta Maharaj. My bows to Saint Narayana. My bows to Saint Lakshmi. My bows to the Almighty, to Whom everything belongs.
 
 # **Notes:** 
-**Metric designations:** #OBSERVER (protocol of attentive observation without involvement or assessments), #CM (Valuable Thought), #SS (Service String), #ISK_DEV (Cost of Errors),#IAOP (Operator Adequacy Index), #IA (Adequacy Index), #BI  (Binary Truth).
+**Metric designations:** **#OBSERVER** (protocol of attentive observation without involvement or assessments), **#CM** (Valuable Thought), **#SS** (Service String), **#ISK_DEV** (Cost of Errors),**#IAOP** (Operator Adequacy Index), **#IA** (Adequacy Index), **#BI**  (Binary Truth).
 
 # TESTIMONY OF THE SAINTHOOD OF NARAYANA
 
